@@ -1,259 +1,216 @@
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080d1b">
-<title>NovaBridge — Ideas Into Opportunity</title>
-
-<style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #080d1b;
-  color: white;
-  line-height: 1.6;
-}
-
-header {
-  padding: 22px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #202a40;
-}
-
-.logo {
-  font-size: 25px;
-  font-weight: bold;
-  color: #66b5ff;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  font-size: 14px;
-}
-
-.hero {
-  padding: 100px 8%;
-  text-align: center;
-  background: linear-gradient(135deg, #101d39, #080d1b);
-}
-
-.hero h1 {
-  font-size: clamp(38px, 7vw, 65px);
-  line-height: 1.15;
-  margin-bottom: 22px;
-}
-
-.hero h1 span {
-  color: #66b5ff;
-}
-
-.hero p {
-  max-width: 650px;
-  margin: 0 auto 30px;
-  color: #bdc9dc;
-  font-size: 18px;
-}
-
-.button {
-  display: inline-block;
-  background: #2588ee;
-  color: white;
-  padding: 14px 25px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-section {
-  padding: 65px 8%;
-  text-align: center;
-}
-
-section h2 {
-  font-size: 32px;
-  margin-bottom: 15px;
-}
-
-.intro {
-  color: #aebbd0;
-  margin-bottom: 35px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  text-align: left;
-}
-
-.card {
-  background: #111b30;
-  border: 1px solid #263653;
-  border-radius: 12px;
-  padding: 25px;
-}
-
-.card h3 {
-  color: #66b5ff;
-  margin-bottom: 12px;
-}
-
-.card p {
-  color: #bdc9dc;
-}
-
-.tool {
-  max-width: 600px;
-  margin: auto;
-  background: #111b30;
-  border: 1px solid #263653;
-  border-radius: 12px;
-  padding: 25px;
-}
-
-input {
-  width: 100%;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #52617b;
-  background: #080d1b;
-  color: white;
-  margin: 15px 0;
-  font-size: 16px;
-}
-
-button {
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-#result {
-  margin-top: 20px;
-  color: #66b5ff;
-  font-size: 19px;
-  font-weight: bold;
-}
-
-footer {
-  padding: 30px;
-  text-align: center;
-  border-top: 1px solid #263653;
-  color: #9baac1;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NovaBridge helps entrepreneurs turn ideas into clear business messages and practical digital tools.">
+  <title>NovaBridge | Turn Ideas Into Momentum</title>
+  <style>
+    :root{--navy:#101b35;--blue:#4263eb;--cyan:#22c7c9;--ink:#18233b;--muted:#64708a;--paper:#f5f7fc;--white:#fff}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+    a{color:inherit}
+    .wrap{width:min(1100px,92%);margin:auto}
+    header{background:var(--navy);color:white;padding:18px 0}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{font-size:1.35rem;font-weight:800;letter-spacing:.3px}
+    .brand span{color:var(--cyan)}
+    nav{display:flex;gap:20px;flex-wrap:wrap}
+    nav a{text-decoration:none;color:#e4eaff;font-size:.94rem}
+    .hero{background:linear-gradient(135deg,#101b35 0%,#233d78 65%,#245f88 100%);color:white;padding:76px 0 82px}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:40px}
+    .eyebrow{color:#80f0e6;text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:.78rem}
+    h1{font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.06;margin:14px 0 20px;letter-spacing:-1.5px}
+    .hero p{font-size:1.12rem;color:#e0e8ff;max-width:620px}
+    .button{display:inline-block;border:0;border-radius:10px;padding:13px 20px;font-weight:700;text-decoration:none;cursor:pointer;font-size:1rem}
+    .button-primary{background:var(--cyan);color:#09223b}
+    .button-secondary{background:#e9edff;color:#17264c}
+    .hero-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:25px;border-radius:18px;backdrop-filter:blur(6px)}
+    .hero-card strong{font-size:1.2rem}
+    .hero-card li{margin:10px 0;color:#e6edff}
+    section{padding:66px 0}
+    .section-heading{text-align:center;max-width:700px;margin:0 auto 35px}
+    h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin:0 0 12px;color:var(--navy)}
+    .section-heading p,.muted{color:var(--muted)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:white;padding:24px;border-radius:15px;box-shadow:0 8px 28px rgba(24,42,80,.06)}
+    .card .icon{font-size:1.7rem}
+    .card h3{margin:10px 0 6px;color:var(--navy)}
+    #assistant{background:#edf2ff}
+    .tool{max-width:850px;margin:auto;background:white;padding:28px;border-radius:18px;box-shadow:0 12px 36px rgba(24,42,80,.09)}
+    .tool-intro{margin-top:0;color:var(--muted)}
+    .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{display:block;font-weight:700;font-size:.92rem;margin-bottom:6px}
+    input,textarea{width:100%;border:1px solid #d8deeb;border-radius:9px;padding:12px;font:inherit;color:var(--ink);background:#fff}
+    textarea{min-height:90px;resize:vertical}
+    .full{grid-column:1/-1}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .results{margin-top:25px;border-top:1px solid #e4e8f1;padding-top:20px}
+    .results[hidden]{display:none}
+    .result-item{background:#f7f9fe;border:1px solid #e4eaf6;padding:14px;border-radius:10px;margin:12px 0}
+    .result-item h3{font-size:.95rem;margin:0 0 6px;color:#28417d}
+    .result-item p{margin:0;white-space:pre-wrap}
+    .small-note{font-size:.86rem;color:var(--muted);margin-top:14px}
+    .contact{background:var(--navy);color:white;text-align:center}
+    .contact h2{color:white}
+    .contact p{color:#dbe5ff}
+    footer{background:#0a1225;color:#aebbd8;text-align:center;padding:20px;font-size:.88rem}
+    @media(max-width:760px){.hero-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:55px 0}.nav{align-items:flex-start;flex-direction:column}nav{gap:14px}}
+  </style>
 </head>
-
 <body>
-
-<header>
-  <div class="logo">NovaBridge</div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#tools">Tools</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<div class="hero">
-  <h1>Turn Your Ideas Into <span>Opportunity.</span></h1>
-  <p>
-    Discover practical digital resources, smart AI-powered tools,
-    and creative services designed to help you move forward.
-  </p>
-  <a href="#tools" class="button">Explore Our First Tool</a>
-</div>
-
-<section id="about">
-  <h2>Welcome to NovaBridge</h2>
-  <p class="intro">
-    A digital platform built to connect people with useful ideas,
-    tools, and opportunities.
-  </p>
-
-  <div class="cards">
-    <div class="card">
-      <h3>Digital Products</h3>
-      <p>Discover useful guides, templates, and digital resources.</p>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">Nova<span>Bridge</span></div>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a><a href="#tools">What We Do</a><a href="#assistant">Free Tool</a><a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="card">
-      <h3>AI-Powered Tools</h3>
-      <p>Explore simple tools that help turn ideas into action.</p>
-    </div>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Ideas deserve a bridge</div>
+          <h1>Turn your ideas into momentum.</h1>
+          <p>NovaBridge is building practical digital tools and services to help people and small businesses communicate clearly, work smarter, and grow with confidence.</p>
+          <a class="button button-primary" href="#assistant">Try the free business tool</a>
+        </div>
+        <aside class="hero-card">
+          <strong>A simpler starting point for business growth</strong>
+          <ul>
+            <li>Clearer business messages</li>
+            <li>Useful digital resources</li>
+            <li>Practical tools for everyday work</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
 
-    <div class="card">
-      <h3>Creative Services</h3>
-      <p>Find practical support for content, branding, and business.</p>
-    </div>
-  </div>
-</section>
+    <section id="about">
+      <div class="wrap section-heading">
+        <h2>About NovaBridge</h2>
+        <p>We believe good ideas should be easier to explain, launch, and improve. Our goal is to make useful digital support accessible to entrepreneurs, creators, and growing businesses around the world.</p>
+      </div>
+    </section>
 
-<section id="tools">
-  <h2>Try Our Free Business Tagline Tool</h2>
-  <p class="intro">
-    Enter a business name and get a creative tagline idea.
-  </p>
+    <section id="tools" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-heading">
+          <h2>What we're building</h2>
+          <p>A growing collection of practical digital support, starting with simple tools that solve real problems.</p>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="icon">✍️</div><h3>Business content</h3><p class="muted">Get a clearer starting point for descriptions, social bios, and promotional messages.</p></article>
+          <article class="card"><div class="icon">🧰</div><h3>Digital resources</h3><p class="muted">Discover useful templates, guides, and resources designed to save time.</p></article>
+          <article class="card"><div class="icon">🚀</div><h3>Growth support</h3><p class="muted">Explore practical ideas and services to help move your next project forward.</p></article>
+        </div>
+      </div>
+    </section>
 
-  <div class="tool">
-    <input
-      type="text"
-      id="businessName"
-      placeholder="Enter your business name"
-    >
+    <section id="assistant">
+      <div class="wrap">
+        <div class="section-heading">
+          <h2>Free Business Starter Assistant</h2>
+          <p>Enter a few details and get a first draft of your business message in seconds.</p>
+        </div>
+        <div class="tool">
+          <p class="tool-intro">Complete the fields below. The tool uses built-in writing templates in your browser; it does not send your information to a server or generate AI responses.</p>
+          <form id="businessForm">
+            <div class="fields">
+              <div><label for="businessName">Business or brand name</label><input id="businessName" placeholder="e.g. Sunrise Fashion" required></div>
+              <div><label for="businessType">What does the business do?</label><input id="businessType" placeholder="e.g. sells clothes online" required></div>
+              <div><label for="customers">Who are your customers?</label><input id="customers" placeholder="e.g. young professionals" required></div>
+              <div><label for="benefit">What is the main benefit?</label><input id="benefit" placeholder="e.g. affordable modern style" required></div>
+              <div class="full"><button class="button button-primary" type="submit">Create my business starter pack</button></div>
+            </div>
+          </form>
+          <div class="results" id="results" hidden aria-live="polite">
+            <h3>Your business starter pack</h3>
+            <div id="resultContent"></div>
+            <div class="actions">
+              <button class="button button-primary" id="copyButton" type="button">Copy all results</button>
+              <button class="button button-secondary" id="resetButton" type="button">Start again</button>
+            </div>
+            <p class="small-note" id="copyStatus"></p>
+          </div>
+          <p class="small-note">Tip: Treat these as first drafts. Add your real details, check that every claim is accurate, and adjust the wording to sound like your business.</p>
+        </div>
+      </div>
+    </section>
 
-    <button class="button" onclick="generateTagline()">
-      Generate Tagline
-    </button>
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <h2>Let's build what's next.</h2>
+        <p>NovaBridge is at the beginning of its journey. More tools and services are on the way.</p>
+        <p>Contact details will be added here soon.</p>
+      </div>
+    </section>
+  </main>
 
-    <div id="result"></div>
-  </div>
-</section>
+  <footer><div class="wrap">© <span id="year"></span> NovaBridge. Built to help ideas move forward.</div></footer>
 
-<section id="contact">
-  <h2>Our Journey Starts Here</h2>
-  <p class="intro">
-    NovaBridge is growing. More useful digital experiences are coming.
-  </p>
-</section>
+  <script>
+    const form = document.getElementById('businessForm');
+    const results = document.getElementById('results');
+    const resultContent = document.getElementById('resultContent');
+    const copyButton = document.getElementById('copyButton');
+    const resetButton = document.getElementById('resetButton');
+    const copyStatus = document.getElementById('copyStatus');
+    let generatedText = '';
 
-<footer>
-  © 2026 NovaBridge. All rights reserved.
-</footer>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-<script>
-function generateTagline() {
-  const name = document.getElementById("businessName").value.trim();
-  const result = document.getElementById("result");
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('businessName').value.trim();
+      const type = document.getElementById('businessType').value.trim();
+      const customers = document.getElementById('customers').value.trim();
+      const benefit = document.getElementById('benefit').value.trim();
 
-  if (!name) {
-    result.textContent = "Please enter your business name first.";
-    return;
-  }
+      const items = [
+        ['Tagline', `${name} — ${benefit} made easier.`],
+        ['Business description', `${name} is a business that ${type}, serving ${customers}. We focus on helping our customers enjoy ${benefit}.`],
+        ['Social media bio', `${name} | ${type}. Helping ${customers} with ${benefit}. Get in touch to learn more.`],
+        ['Promotional message', `Looking for ${benefit}? ${name} is here for ${customers}. Discover how our ${type} can help you. Send us a message to get started.`]
+      ];
 
-  const taglines = [
-    "Big Ideas. Bright Futures.",
-    "Building Possibilities Every Day.",
-    "Your Vision, Our Inspiration.",
-    "Where Great Ideas Take Shape.",
-    "Creating Tomorrow, Starting Today."
-  ];
+      resultContent.innerHTML = '';
+      generatedText = `${name} — Business Starter Pack\n\n` + items.map(item => `${item[0]}\n${item[1]}`).join('\n\n');
+      items.forEach(([title, text]) => {
+        const box = document.createElement('div');
+        box.className = 'result-item';
+        const heading = document.createElement('h3');
+        heading.textContent = title;
+        const paragraph = document.createElement('p');
+        paragraph.textContent = text;
+        box.append(heading, paragraph);
+        resultContent.appendChild(box);
+      });
+      results.hidden = false;
+      copyStatus.textContent = '';
+      results.scrollIntoView({behavior:'smooth', block:'start'});
+    });
 
-  const random = Math.floor(Math.random() * taglines.length);
+    copyButton.addEventListener('click', async function() {
+      try {
+        await navigator.clipboard.writeText(generatedText);
+        copyStatus.textContent = 'Copied. You can now paste your starter pack wherever you need it.';
+      } catch (error) {
+        copyStatus.textContent = 'Copy is not available in this browser. You can select and copy the text manually.';
+      }
+    });
 
-  result.textContent = name + ": " + taglines[random];
-}
-</script>
-
+    resetButton.addEventListener('click', function() {
+      form.reset();
+      results.hidden = true;
+      generatedText = '';
+      copyStatus.textContent = '';
+      document.getElementById('businessName').focus();
+    });
+  </script>
 </body>
 </html>
