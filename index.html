@@ -1,1 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1b">
+<title>NovaBridge — Ideas Into Opportunity</title>
 
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #080d1b;
+  color: white;
+  line-height: 1.6;
+}
+
+header {
+  padding: 22px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #202a40;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #66b5ff;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.hero {
+  padding: 100px 8%;
+  text-align: center;
+  background: linear-gradient(135deg, #101d39, #080d1b);
+}
+
+.hero h1 {
+  font-size: clamp(38px, 7vw, 65px);
+  line-height: 1.15;
+  margin-bottom: 22px;
+}
+
+.hero h1 span {
+  color: #66b5ff;
+}
+
+.hero p {
+  max-width: 650px;
+  margin: 0 auto 30px;
+  color: #bdc9dc;
+  font-size: 18px;
+}
+
+.button {
+  display: inline-block;
+  background: #2588ee;
+  color: white;
+  padding: 14px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+section {
+  padding: 65px 8%;
+  text-align: center;
+}
+
+section h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.intro {
+  color: #aebbd0;
+  margin-bottom: 35px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  text-align: left;
+}
+
+.card {
+  background: #111b30;
+  border: 1px solid #263653;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.card h3 {
+  color: #66b5ff;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #bdc9dc;
+}
+
+.tool {
+  max-width: 600px;
+  margin: auto;
+  background: #111b30;
+  border: 1px solid #263653;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #52617b;
+  background: #080d1b;
+  color: white;
+  margin: 15px 0;
+  font-size: 16px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#result {
+  margin-top: 20px;
+  color: #66b5ff;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+footer {
+  padding: 30px;
+  text-align: center;
+  border-top: 1px solid #263653;
+  color: #9baac1;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">NovaBridge</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Turn Your Ideas Into <span>Opportunity.</span></h1>
+  <p>
+    Discover practical digital resources, smart AI-powered tools,
+    and creative services designed to help you move forward.
+  </p>
+  <a href="#tools" class="button">Explore Our First Tool</a>
+</div>
+
+<section id="about">
+  <h2>Welcome to NovaBridge</h2>
+  <p class="intro">
+    A digital platform built to connect people with useful ideas,
+    tools, and opportunities.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Digital Products</h3>
+      <p>Discover useful guides, templates, and digital resources.</p>
+    </div>
+
+    <div class="card">
+      <h3>AI-Powered Tools</h3>
+      <p>Explore simple tools that help turn ideas into action.</p>
+    </div>
+
+    <div class="card">
+      <h3>Creative Services</h3>
+      <p>Find practical support for content, branding, and business.</p>
+    </div>
+  </div>
+</section>
+
+<section id="tools">
+  <h2>Try Our Free Business Tagline Tool</h2>
+  <p class="intro">
+    Enter a business name and get a creative tagline idea.
+  </p>
+
+  <div class="tool">
+    <input
+      type="text"
+      id="businessName"
+      placeholder="Enter your business name"
+    >
+
+    <button class="button" onclick="generateTagline()">
+      Generate Tagline
+    </button>
+
+    <div id="result"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Our Journey Starts Here</h2>
+  <p class="intro">
+    NovaBridge is growing. More useful digital experiences are coming.
+  </p>
+</section>
+
+<footer>
+  © 2026 NovaBridge. All rights reserved.
+</footer>
+
+<script>
+function generateTagline() {
+  const name = document.getElementById("businessName").value.trim();
+  const result = document.getElementById("result");
+
+  if (!name) {
+    result.textContent = "Please enter your business name first.";
+    return;
+  }
+
+  const taglines = [
+    "Big Ideas. Bright Futures.",
+    "Building Possibilities Every Day.",
+    "Your Vision, Our Inspiration.",
+    "Where Great Ideas Take Shape.",
+    "Creating Tomorrow, Starting Today."
+  ];
+
+  const random = Math.floor(Math.random() * taglines.length);
+
+  result.textContent = name + ": " + taglines[random];
+}
+</script>
+
+</body>
+</html>
