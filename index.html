@@ -44,6 +44,9 @@
     .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     label{display:block;font-weight:700;font-size:.92rem;margin-bottom:6px}
     input,textarea{width:100%;border:1px solid #d8deeb;border-radius:9px;padding:12px;font:inherit;color:var(--ink);background:#fff}
+    input[aria-invalid="true"]{border-color:#b42318;box-shadow:0 0 0 2px rgba(180,35,24,.12)}
+    input:focus-visible,button:focus-visible,a:focus-visible,[tabindex="-1"]:focus-visible{outline:3px solid #f0a202;outline-offset:3px}
+    .field-error{margin:5px 0 0;color:#b42318;font-size:.86rem}
     textarea{min-height:90px;resize:vertical}
     .full{grid-column:1/-1}
     .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
@@ -118,24 +121,24 @@
           <p>Enter a few details to create four template-based first drafts for your business.</p>
         </div>
         <div class="tool">
-          <p class="tool-intro">Complete the fields below. The tool uses built-in writing templates in your browser; it does not send your information to a server or generate AI responses.</p>
-          <form id="businessForm">
+          <p class="tool-intro">Complete all four fields with a few words or a short phrase. Your entries shape repeatable wording options in built-in templates; nothing is sent to a server and no AI responses are generated.</p>
+          <form id="businessForm" novalidate>
             <div class="fields">
-              <div><label for="businessName">Business or brand name</label><input id="businessName" placeholder="e.g. Sunrise Fashion" required></div>
-              <div><label for="businessType">What does the business do?</label><input id="businessType" placeholder="e.g. sells clothes online" required></div>
-              <div><label for="customers">Who are your customers?</label><input id="customers" placeholder="e.g. young professionals" required></div>
-              <div><label for="benefit">What is the main benefit?</label><input id="benefit" placeholder="e.g. affordable modern style" required></div>
+              <div><label for="businessName">Business or brand name</label><input id="businessName" name="businessName" placeholder="e.g. Sunrise Fashion" aria-describedby="businessNameError" required><p class="field-error" id="businessNameError" hidden></p></div>
+              <div><label for="businessType">What does the business do?</label><input id="businessType" name="businessType" placeholder="e.g. sells clothes online" aria-describedby="businessTypeError" required><p class="field-error" id="businessTypeError" hidden></p></div>
+              <div><label for="customers">Who are your customers?</label><input id="customers" name="customers" placeholder="e.g. young professionals" aria-describedby="customersError" required><p class="field-error" id="customersError" hidden></p></div>
+              <div><label for="benefit">What is the main benefit?</label><input id="benefit" name="benefit" placeholder="e.g. affordable modern style" aria-describedby="benefitError" required><p class="field-error" id="benefitError" hidden></p></div>
               <div class="full"><button class="button button-primary" type="submit">Create my business starter pack</button></div>
             </div>
           </form>
           <div class="results" id="results" hidden aria-live="polite">
-            <h3>Your business starter pack</h3>
+            <h3 id="resultsHeading" tabindex="-1">Your business starter pack</h3>
             <div id="resultContent"></div>
             <div class="actions">
               <button class="button button-primary" id="copyButton" type="button">Copy all results</button>
               <button class="button button-secondary" id="resetButton" type="button">Start again</button>
             </div>
-            <p class="small-note" id="copyStatus"></p>
+          <p class="small-note" id="copyStatus" role="status" aria-live="polite" aria-atomic="true"></p>
           </div>
           <p class="small-note">Tip: Treat these as first drafts. Add your real details, check that every claim is accurate, and adjust the wording to sound like your business.</p>
         </div>
@@ -161,7 +164,34 @@
     const copyButton = document.getElementById('copyButton');
     const resetButton = document.getElementById('resetButton');
     const copyStatus = document.getElementById('copyStatus');
+    const resultsHeading = document.getElementById('resultsHeading');
+    const fields = [
+      { id: 'businessName', label: 'Business or brand name' },
+      { id: 'businessType', label: 'What the business does' },
+      { id: 'customers', label: 'Who the customers are' },
+      { id: 'benefit', label: 'The main benefit' }
+    ];
     let generatedText = '';
+
+    function clearFieldError(input) {
+      input.removeAttribute('aria-invalid');
+      const error = document.getElementById(`${input.id}Error`);
+      error.textContent = '';
+      error.hidden = true;
+    }
+
+    fields.forEach(({ id }) => {
+      const input = document.getElementById(id);
+      input.addEventListener('input', () => clearFieldError(input));
+    });
+
+    function chooseVariant(seed, variants) {
+      let hash = 0;
+      for (let index = 0; index < seed.length; index += 1) {
+        hash = (hash * 31 + seed.charCodeAt(index)) >>> 0;
+      }
+      return variants[hash % variants.length];
+    }
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -172,11 +202,51 @@
       const customers = document.getElementById('customers').value.trim();
       const benefit = document.getElementById('benefit').value.trim();
 
+      let firstInvalid = null;
+      fields.forEach(({ id, label }) => {
+        const input = document.getElementById(id);
+        const error = document.getElementById(`${id}Error`);
+        if (!input.value.trim()) {
+          input.setAttribute('aria-invalid', 'true');
+          error.textContent = `${label} is required. Please enter ${label.toLowerCase()}.`;
+          error.hidden = false;
+          firstInvalid = firstInvalid || input;
+        } else {
+          clearFieldError(input);
+        }
+      });
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      const seed = `${name}|${type}|${customers}|${benefit}`.toLowerCase();
+      const tagline = chooseVariant(seed, [
+        `${name} — ${benefit} made easier.`,
+        `Make room for ${benefit} with ${name}.`,
+        `${name}: a simpler way to enjoy ${benefit}.`
+      ]);
+      const description = chooseVariant(seed, [
+        `${name} is a business that ${type}, serving ${customers}. We focus on helping our customers enjoy ${benefit}.`,
+        `${name} helps ${customers} by ${type}, with a focus on ${benefit}.`,
+        `At ${name}, we ${type} for ${customers} and aim to make ${benefit} easier to enjoy.`
+      ]);
+      const bio = chooseVariant(seed, [
+        `${name} | ${type}. Helping ${customers} with ${benefit}. Get in touch to learn more.`,
+        `${name} — ${type} for ${customers}. Here to bring you ${benefit}. Say hello.`,
+        `Discover ${benefit} with ${name}. We ${type} for ${customers}. Connect with us below.`
+      ]);
+      const promotion = chooseVariant(seed, [
+        `Looking for ${benefit}? ${name} is here for ${customers}. Discover how our ${type} can help you. Send us a message to get started.`,
+        `Meet ${name}: we ${type} to help ${customers} enjoy ${benefit}. Get in touch and find out more.`,
+        `Ready for ${benefit}? ${name} offers ${type} for ${customers}. Message us to learn how to get started.`
+      ]);
+
       const items = [
-        ['Tagline', `${name} — ${benefit} made easier.`],
-        ['Business description', `${name} is a business that ${type}, serving ${customers}. We focus on helping our customers enjoy ${benefit}.`],
-        ['Social media bio', `${name} | ${type}. Helping ${customers} with ${benefit}. Get in touch to learn more.`],
-        ['Promotional message', `Looking for ${benefit}? ${name} is here for ${customers}. Discover how our ${type} can help you. Send us a message to get started.`]
+        ['Tagline', tagline],
+        ['Business description', description],
+        ['Social media bio', bio],
+        ['Promotional message', promotion]
       ];
 
       resultContent.innerHTML = '';
@@ -194,6 +264,7 @@
       results.hidden = false;
       copyStatus.textContent = '';
       results.scrollIntoView({behavior:'smooth', block:'start'});
+      resultsHeading.focus({ preventScroll: true });
     });
 
     copyButton.addEventListener('click', async function() {
@@ -210,6 +281,7 @@
       results.hidden = true;
       generatedText = '';
       copyStatus.textContent = '';
+      fields.forEach(({ id }) => clearFieldError(document.getElementById(id)));
       document.getElementById('businessName').focus();
     });
   </script>
