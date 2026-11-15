@@ -227,53 +227,25 @@
       const seed = `${name}|${type}|${customers}|${benefit}`.toLowerCase();
       const benefitText = benefit.replace(/\baffordable\s+stylish clothing\b/gi, 'affordable, stylish clothing');
       const benefitSentence = `Customers choose ${name} for ${benefitText}`;
-      function toActivityPhrase(activity) {
-        const gerunds = {
-          bake: 'baking', bakes: 'baking', build: 'building', builds: 'building',
-          care: 'caring', cares: 'caring', clean: 'cleaning', cleans: 'cleaning',
-          cook: 'cooking', cooks: 'cooking', create: 'creating', creates: 'creating',
-          deliver: 'delivering', delivers: 'delivering', design: 'designing', designs: 'designing',
-          grow: 'growing', grows: 'growing', host: 'hosting', hosts: 'hosting',
-          manage: 'managing', manages: 'managing', make: 'making', makes: 'making',
-          offer: 'offering', offers: 'offering', organize: 'organizing', organizes: 'organizing',
-          photograph: 'photographing', photographs: 'photographing', plan: 'planning', plans: 'planning',
-          prepare: 'preparing', prepares: 'preparing', provide: 'providing', provides: 'providing',
-          repair: 'repairing', repairs: 'repairing', run: 'running', runs: 'running',
-          sell: 'selling', sells: 'selling', serve: 'serving', serves: 'serving',
-          style: 'styling', styles: 'styling', teach: 'teaching', teaches: 'teaching',
-          write: 'writing', writes: 'writing'
-        };
-        const words = activity.trim().split(/\s+/);
-        const firstWord = words[0].toLowerCase();
-        if (gerunds[firstWord]) {
-          const gerund = gerunds[firstWord];
-          words[0] = words[0][0] === words[0][0].toUpperCase()
-            ? gerund[0].toUpperCase() + gerund.slice(1)
-            : gerund;
-        }
-        return words.join(' ');
-      }
-      const activityText = toActivityPhrase(type);
       const tagline = chooseVariant(seed, [
         `${name} — ${benefitText} made easier.`,
         `Make room for ${benefitText} with ${name}.`,
         `${name}: a simpler way to enjoy ${benefitText}.`
       ]);
-      const offeringText = `${activityText} services`;
       const description = chooseVariant(seed, [
-        `${name} provides ${offeringText} for ${customers}. ${benefitSentence}.`,
-        `${customers} can find ${offeringText} at ${name}. ${benefitSentence}.`,
-        `${name} brings ${offeringText} to ${customers}. ${benefitSentence}.`
+        `${name} serves ${customers}. Business activity: ${type}. ${benefitSentence}.`,
+        `At ${name}, the business activity is ${type}. The business serves ${customers}, with ${benefitText} as the main benefit.`,
+        `${name} is for ${customers}. Business activity: ${type}. Main benefit: ${benefitText}.`
       ]);
       const bio = chooseVariant(seed, [
-        `${offeringText} for ${customers}. ${benefitSentence}. Discover ${name}.`,
-        `${name}: ${offeringText} for ${customers}. ${benefitSentence}.`,
-        `Serving ${customers} with ${offeringText}. ${benefitSentence}. Find us at ${name}.`
+        `${name} | ${type} | For ${customers} | ${benefitText}`,
+        `${name} • Business activity: ${type} • Serving ${customers} • ${benefitText}`,
+        `For ${customers}: ${name} — ${type}; ${benefitText}.`
       ]);
       const promotion = chooseVariant(seed, [
-        `${name} helps ${customers} find ${offeringText}. We focus on ${activityText} and ${benefitText}. Message us today.`,
-        `Discover ${name}: ${offeringText} for ${customers}. We focus on ${activityText}, with ${benefitText}. Get in touch.`,
-        `Looking for ${offeringText}? ${name} serves ${customers} by ${activityText}. Enjoy ${benefitText}. Send us a message to learn more.`
+        `Looking for ${benefitText}? ${name} serves ${customers}. Business activity: ${type}. Message us today.`,
+        `Meet ${name}. Business activity: ${type}. For ${customers}, with ${benefitText} as the main benefit. Get in touch to learn more.`,
+        `${name} serves ${customers} with ${benefitText}. Business activity: ${type}. Send us a message to learn more.`
       ]);
 
       const items = [
