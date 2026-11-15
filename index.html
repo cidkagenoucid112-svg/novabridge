@@ -121,13 +121,13 @@
           <p>Enter a few details to create four template-based first drafts for your business.</p>
         </div>
         <div class="tool">
-          <p class="tool-intro">Complete all four fields with a few words or a short phrase. Your entries shape repeatable wording options in built-in templates; nothing is sent to a server and no AI responses are generated.</p>
+          <p class="tool-intro">Complete all four fields with a few words or a short phrase. Built-in templates process your entries in this browser; the page does not send them to a server. If you choose Copy all results, the browser writes the generated text to your clipboard. The contact link opens Gmail, but does not attach your entries.</p>
           <form id="businessForm" novalidate>
             <div class="fields">
               <div><label for="businessName">Business or brand name</label><input id="businessName" name="businessName" placeholder="e.g. Sunrise Fashion" aria-describedby="businessNameError" required><p class="field-error" id="businessNameError" hidden></p></div>
               <div><label for="businessType">What does the business do?</label><input id="businessType" name="businessType" placeholder="e.g. sells clothes online" aria-describedby="businessTypeError" required><p class="field-error" id="businessTypeError" hidden></p></div>
               <div><label for="customers">Who are your customers?</label><input id="customers" name="customers" placeholder="e.g. young professionals" aria-describedby="customersError" required><p class="field-error" id="customersError" hidden></p></div>
-              <div><label for="benefit">What is the main benefit?</label><input id="benefit" name="benefit" placeholder="e.g. affordable modern style" aria-describedby="benefitError" required><p class="field-error" id="benefitError" hidden></p></div>
+              <div><label for="benefit">What is the main benefit?</label><input id="benefit" name="benefit" placeholder="e.g. affordable, stylish clothing" aria-describedby="benefitError" required><p class="field-error" id="benefitError" hidden></p></div>
               <div class="full"><button class="button button-primary" type="submit">Create my business starter pack</button></div>
             </div>
           </form>
@@ -216,30 +216,89 @@
         }
       });
       if (firstInvalid) {
+        results.hidden = true;
+        resultContent.innerHTML = '';
+        generatedText = '';
+        copyStatus.textContent = '';
         firstInvalid.focus();
         return;
       }
 
       const seed = `${name}|${type}|${customers}|${benefit}`.toLowerCase();
+      const benefitText = benefit.replace(/\baffordable\s+stylish clothing\b/gi, 'affordable, stylish clothing');
+      const benefitSentence = `Customers choose ${name} for ${benefitText}`;
+      function toActivityPhrase(activity) {
+        const gerunds = {
+          bake: 'baking', bakes: 'baking', build: 'building', builds: 'building',
+          care: 'caring', cares: 'caring', clean: 'cleaning', cleans: 'cleaning',
+          cook: 'cooking', cooks: 'cooking', create: 'creating', creates: 'creating',
+          deliver: 'delivering', delivers: 'delivering', design: 'designing', designs: 'designing',
+          grow: 'growing', grows: 'growing', host: 'hosting', hosts: 'hosting',
+          manage: 'managing', manages: 'managing', make: 'making', makes: 'making',
+          offer: 'offering', offers: 'offering', organize: 'organizing', organizes: 'organizing',
+          photograph: 'photographing', photographs: 'photographing', plan: 'planning', plans: 'planning',
+          prepare: 'preparing', prepares: 'preparing', provide: 'providing', provides: 'providing',
+          repair: 'repairing', repairs: 'repairing', run: 'running', runs: 'running',
+          sell: 'selling', sells: 'selling', serve: 'serving', serves: 'serving',
+          style: 'styling', styles: 'styling', teach: 'teaching', teaches: 'teaching',
+          write: 'writing', writes: 'writing'
+        };
+        const words = activity.trim().split(/\s+/);
+        const firstWord = words[0].toLowerCase();
+        if (gerunds[firstWord]) {
+          const gerund = gerunds[firstWord];
+          words[0] = words[0][0] === words[0][0].toUpperCase()
+            ? gerund[0].toUpperCase() + gerund.slice(1)
+            : gerund;
+        }
+        return words.join(' ');
+      }
+      const activityText = toActivityPhrase(type);
       const tagline = chooseVariant(seed, [
-        `${name} — ${benefit} made easier.`,
-        `Make room for ${benefit} with ${name}.`,
-        `${name}: a simpler way to enjoy ${benefit}.`
+        `${name} — ${benefitText} made easier.`,
+        `Make room for ${benefitText} with ${name}.`,
+        `${name}: a simpler way to enjoy ${benefitText}.`
       ]);
+      const activityLower = type.toLowerCase();
+      const offeringText = /plumb|pipe|drain|leak|water system/.test(activityLower)
+        ? 'plumbing repairs and installations'
+        : /bake|bakery|bread|pastr|cake|food|cater/.test(activityLower)
+          ? 'freshly baked bread, pastries, and cakes'
+          : /cloth|fashion|apparel|boutique|garment|dress|retail|sell/.test(activityLower)
+            ? 'clothing and accessories'
+            : /tutor|teach|school|educat|learn|train/.test(activityLower)
+              ? 'lessons and tutoring'
+              : /repair|fix|maintain|mechanic|phone|computer|appliance/.test(activityLower)
+                ? 'repair and maintenance services'
+                : /clean/.test(activityLower)
+                  ? 'cleaning services'
+                  : /hair|salon|beauty|barber/.test(activityLower)
+                    ? 'hair and beauty services'
+                    : /photograph|photo/.test(activityLower)
+                      ? 'photography services'
+                      : /design/.test(activityLower)
+                        ? 'design services'
+                        : /build|construct|carpent/.test(activityLower)
+                          ? 'building and construction services'
+                          : /garden|landscap|farm|grow/.test(activityLower)
+                            ? 'plants and gardening services'
+                            : /deliver|transport|taxi|travel/.test(activityLower)
+                              ? 'delivery and transport services'
+                              : `${activityText} services`;
       const description = chooseVariant(seed, [
-        `${name} is a business that ${type}, serving ${customers}. We focus on helping our customers enjoy ${benefit}.`,
-        `${name} helps ${customers} by ${type}, with a focus on ${benefit}.`,
-        `At ${name}, we ${type} for ${customers} and aim to make ${benefit} easier to enjoy.`
+        `${name} provides ${offeringText} for ${customers}. ${benefitSentence}.`,
+        `${customers} can find ${offeringText} at ${name}. ${benefitSentence}.`,
+        `${name} brings ${offeringText} to ${customers}. ${benefitSentence}.`
       ]);
       const bio = chooseVariant(seed, [
-        `${name} | ${type}. Helping ${customers} with ${benefit}. Get in touch to learn more.`,
-        `${name} — ${type} for ${customers}. Here to bring you ${benefit}. Say hello.`,
-        `Discover ${benefit} with ${name}. We ${type} for ${customers}. Connect with us below.`
+        `${offeringText} for ${customers}. ${benefitSentence}. Discover ${name}.`,
+        `${name}: ${offeringText} for ${customers}. ${benefitSentence}.`,
+        `Serving ${customers} with ${offeringText}. ${benefitSentence}. Find us at ${name}.`
       ]);
       const promotion = chooseVariant(seed, [
-        `Looking for ${benefit}? ${name} is here for ${customers}. Discover how our ${type} can help you. Send us a message to get started.`,
-        `Meet ${name}: we ${type} to help ${customers} enjoy ${benefit}. Get in touch and find out more.`,
-        `Ready for ${benefit}? ${name} offers ${type} for ${customers}. Message us to learn how to get started.`
+        `${name} helps ${customers} find ${offeringText}. We focus on ${activityText} and ${benefitText}. Message us today.`,
+        `Discover ${name}: ${offeringText} for ${customers}. We focus on ${activityText}, with ${benefitText}. Get in touch.`,
+        `Looking for ${offeringText}? ${name} serves ${customers} by ${activityText}. Enjoy ${benefitText}. Send us a message to learn more.`
       ]);
 
       const items = [
@@ -279,6 +338,7 @@
     resetButton.addEventListener('click', function() {
       form.reset();
       results.hidden = true;
+      resultContent.innerHTML = '';
       generatedText = '';
       copyStatus.textContent = '';
       fields.forEach(({ id }) => clearFieldError(document.getElementById(id)));
