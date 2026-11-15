@@ -226,23 +226,22 @@
 
       const seed = `${name}|${type}|${customers}|${benefit}`.toLowerCase();
       const benefitText = benefit.replace(/\baffordable\s+stylish clothing\b/gi, 'affordable, stylish clothing');
-      const benefitSentence = `Customers choose ${name} for ${benefitText}`;
-      const tagline = chooseVariant(seed, [
-        `${name} — ${benefitText} made easier.`,
-        `Make room for ${benefitText} with ${name}.`,
-        `${name}: a simpler way to enjoy ${benefitText}.`
+      const tagline = chooseVariant(`${seed}|tagline`, [
+        `${name} — ${benefitText} for ${customers}.`,
+        `Discover ${benefitText} with ${name}.`,
+        `${benefitText}, from ${name}.`
       ]);
-      const description = chooseVariant(seed, [
-        `${name} serves ${customers}. Business activity: ${type}. ${benefitSentence}.`,
-        `At ${name}, the business activity is ${type}. The business serves ${customers}, with ${benefitText} as the main benefit.`,
+      const description = chooseVariant(`${seed}|description`, [
+        `Business activity: ${type}. ${name} serves ${customers}. Main benefit: ${benefitText}.`,
+        `Business activity at ${name}: ${type}. The business serves ${customers} and focuses on ${benefitText}.`,
         `${name} is for ${customers}. Business activity: ${type}. Main benefit: ${benefitText}.`
       ]);
-      const bio = chooseVariant(seed, [
+      const bio = chooseVariant(`${seed}|bio`, [
         `${name} | ${type} | For ${customers} | ${benefitText}`,
         `${name} • Business activity: ${type} • Serving ${customers} • ${benefitText}`,
         `For ${customers}: ${name} — ${type}; ${benefitText}.`
       ]);
-      const promotion = chooseVariant(seed, [
+      const promotion = chooseVariant(`${seed}|promotion`, [
         `Looking for ${benefitText}? ${name} serves ${customers}. Business activity: ${type}. Message us today.`,
         `Meet ${name}. Business activity: ${type}. For ${customers}, with ${benefitText} as the main benefit. Get in touch to learn more.`,
         `${name} serves ${customers} with ${benefitText}. Business activity: ${type}. Send us a message to learn more.`
