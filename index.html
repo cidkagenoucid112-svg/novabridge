@@ -259,32 +259,7 @@
         `Make room for ${benefitText} with ${name}.`,
         `${name}: a simpler way to enjoy ${benefitText}.`
       ]);
-      const activityLower = type.toLowerCase();
-      const offeringText = /plumb|pipe|drain|leak|water system/.test(activityLower)
-        ? 'plumbing repairs and installations'
-        : /bake|bakery|bread|pastr|cake|food|cater/.test(activityLower)
-          ? 'freshly baked bread, pastries, and cakes'
-          : /cloth|fashion|apparel|boutique|garment|dress|retail|sell/.test(activityLower)
-            ? 'clothing and accessories'
-            : /tutor|teach|school|educat|learn|train/.test(activityLower)
-              ? 'lessons and tutoring'
-              : /repair|fix|maintain|mechanic|phone|computer|appliance/.test(activityLower)
-                ? 'repair and maintenance services'
-                : /clean/.test(activityLower)
-                  ? 'cleaning services'
-                  : /hair|salon|beauty|barber/.test(activityLower)
-                    ? 'hair and beauty services'
-                    : /photograph|photo/.test(activityLower)
-                      ? 'photography services'
-                      : /design/.test(activityLower)
-                        ? 'design services'
-                        : /build|construct|carpent/.test(activityLower)
-                          ? 'building and construction services'
-                          : /garden|landscap|farm|grow/.test(activityLower)
-                            ? 'plants and gardening services'
-                            : /deliver|transport|taxi|travel/.test(activityLower)
-                              ? 'delivery and transport services'
-                              : `${activityText} services`;
+      const offeringText = `${activityText} services`;
       const description = chooseVariant(seed, [
         `${name} provides ${offeringText} for ${customers}. ${benefitSentence}.`,
         `${customers} can find ${offeringText} at ${name}. ${benefitSentence}.`,
