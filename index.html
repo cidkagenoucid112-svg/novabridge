@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="NovaBridge offers a free, template-based tool to help entrepreneurs draft clear business messages.">
-  <title>Free Business Starter Assistant | NovaBridge</title>
+  <meta name="description" content="Free browser-based tools to help small businesses promote their work, estimate prices, prepare invoices and track the week.">
+  <title>Free Small Business Toolkit | NovaBridge</title>
   <style>
     :root{--navy:#101b35;--blue:#4263eb;--cyan:#22c7c9;--ink:#18233b;--muted:#64708a;--paper:#f5f7fc;--white:#fff}
     *{box-sizing:border-box}
@@ -60,7 +60,46 @@
     .contact h2{color:white}
     .contact p{color:#dbe5ff}
     footer{background:#0a1225;color:#aebbd8;text-align:center;padding:20px;font-size:.88rem}
-    @media(max-width:760px){.hero-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding:55px 0}.nav{align-items:flex-start;flex-direction:column}nav{gap:14px}}
+    .toolkit{background:#f5f7fc}
+    .toolkit-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .toolkit-card{display:block;background:#fff;border:1px solid #e1e6f1;border-radius:14px;padding:20px;text-decoration:none;box-shadow:0 6px 22px rgba(24,42,80,.05);transition:transform .15s ease,box-shadow .15s ease}
+    .toolkit-card:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(24,42,80,.1)}
+    .toolkit-card strong{display:block;color:var(--navy);margin:7px 0}
+    .toolkit-card p{margin:0;color:var(--muted);font-size:.92rem}
+    .toolkit-icon{font-size:1.55rem}
+    .tool-panel{max-width:900px;margin:22px auto 0;background:#fff;border:1px solid #e1e6f1;border-radius:16px;box-shadow:0 8px 26px rgba(24,42,80,.06);overflow:hidden}
+    .tool-panel summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:12px}
+    .tool-panel summary::-webkit-details-marker{display:none}
+    .tool-panel summary::after{content:'+';margin-left:auto;font-size:1.4rem;color:#4263eb}
+    .tool-panel[open] summary::after{content:'−'}
+    .tool-panel-body{padding:0 22px 22px;border-top:1px solid #edf0f6}
+    .tool-panel-body>p{color:var(--muted)}
+    .tool-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .tool-fields .full{grid-column:1/-1}
+    .tool-fields input,.tool-fields select,.tool-fields textarea{width:100%;border:1px solid #d8deeb;border-radius:9px;padding:11px;font:inherit;color:var(--ink);background:#fff}
+    .tool-fields input:focus-visible,.tool-fields select:focus-visible,.tool-fields textarea:focus-visible{outline:3px solid #f0a202;outline-offset:2px}
+    .tool-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .tool-output{margin-top:18px;padding:18px;background:#f7f9fe;border:1px solid #e4eaf6;border-radius:12px;white-space:pre-wrap}
+    .tool-output[hidden]{display:none}
+    .tool-output h3{margin:0 0 10px;color:#28417d}
+    .tool-output p{margin:8px 0}
+    .tool-output ul{padding-left:22px}
+    .hint{font-size:.86rem;color:var(--muted)}
+    .item-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(90px,.65fr) minmax(110px,.8fr) auto;gap:8px;align-items:end;margin:10px 0}
+    .item-row label{font-size:.82rem}
+    .item-row input{min-width:0}
+    .remove-row{border:0;background:#fce8e6;color:#8b1e16;border-radius:8px;padding:10px;cursor:pointer;font-weight:700}
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;background:#fff}
+    th,td{text-align:left;padding:10px;border-bottom:1px solid #e4e8f1;vertical-align:top}
+    th{color:var(--navy);font-size:.88rem}
+    .summary-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+    .summary-card{background:#fff;border:1px solid #e1e6f1;border-radius:10px;padding:12px}
+    .summary-card span{display:block;font-size:.8rem;color:var(--muted)}
+    .summary-card strong{color:var(--navy)}
+    @media print{body.printing *{visibility:hidden!important}body.printing #invoicePreview,body.printing #invoicePreview *{visibility:visible!important}body.printing #invoicePreview{position:absolute;inset:0 auto auto 0;width:100%;margin:0;padding:28px;border:0;box-shadow:none;background:#fff}body.printing #invoicePreview h3{font-size:22px}body.printing #invoicePreview table{margin:18px 0}body.printing #invoicePreview .tool-actions,body.printing #invoicePreview .hint{display:none!important}}
+    @media(max-width:900px){.toolkit-cards{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){.hero-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.fields,.tool-fields{grid-template-columns:1fr}.full,.tool-fields .full{grid-column:auto}.hero{padding:55px 0}.nav{align-items:flex-start;flex-direction:column}nav{gap:14px}.item-row{grid-template-columns:1fr 1fr}.item-row .item-description{grid-column:1/-1}.tool-panel-body{padding:0 16px 18px}.summary-cards{grid-template-columns:1fr}.toolkit-cards{grid-template-columns:1fr 1fr}}
   </style>
 </head>
 <body>
@@ -68,7 +107,7 @@
     <div class="wrap nav">
       <div class="brand">Nova<span>Bridge</span></div>
       <nav aria-label="Main navigation">
-        <a href="#about">About</a><a href="#tools">What We Do</a><a href="#assistant">Free Tool</a><a href="#contact">Contact</a>
+        <a href="#about">About</a><a href="#tools">What We Do</a><a href="#assistant">Starter Pack</a><a href="#toolkit">Business Toolkit</a><a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -79,15 +118,15 @@
         <div>
           <div class="eyebrow">A simple business starting point</div>
           <h1>Get a clearer start for your business.</h1>
-          <p>Use our free Business Starter Assistant to create first drafts of a tagline, business description, social media bio, and promotional message. It uses built-in templates in your browser—not AI.</p>
-          <a class="button button-primary" href="#assistant">Try the free assistant</a>
+          <p>Use free, browser-based tools to shape your business message, plan promotions, estimate prices, prepare quotes and invoices, and track your week.</p>
+          <a class="button button-primary" href="#toolkit">Explore the free toolkit</a>
         </div>
         <aside class="hero-card">
-          <strong>Four useful first drafts</strong>
+          <strong>Practical tools for small businesses</strong>
           <ul>
-            <li>A business tagline</li>
-            <li>A business description</li>
-            <li>Social media bio and promotional message</li>
+            <li>Promote products and services</li>
+            <li>Estimate price and profit</li>
+            <li>Create invoices and keep weekly records</li>
           </ul>
         </aside>
       </div>
@@ -96,7 +135,7 @@
     <section id="about">
       <div class="wrap section-heading">
         <h2>About NovaBridge</h2>
-        <p>NovaBridge offers a simple starting point for entrepreneurs and small businesses. Our free Business Starter Assistant turns a few details about your business into four editable first drafts. Review each one and make sure it reflects your business accurately.</p>
+        <p>NovaBridge gives entrepreneurs and small businesses simple browser-based tools for promotion, pricing, invoices, and day-to-day record keeping. Use the results as practical starting points and check that they fit your business.</p>
       </div>
     </section>
 
@@ -104,12 +143,12 @@
       <div class="wrap">
         <div class="section-heading">
           <h2>What you can use now</h2>
-          <p>The Free Business Starter Assistant creates template-based first drafts for your business.</p>
+          <p>Four free tools to help you communicate with customers and organize everyday business tasks.</p>
         </div>
         <div class="cards">
-          <article class="card"><div class="icon">✍️</div><h3>Business tagline</h3><p class="muted">Create a first draft for a short tagline using your business name and main customer benefit.</p></article>
-          <article class="card"><div class="icon">🧰</div><h3>Business description</h3><p class="muted">Draft a simple description of what your business does, who it serves, and the benefit it offers.</p></article>
-          <article class="card"><div class="icon">🚀</div><h3>Social and promotional drafts</h3><p class="muted">Get starting drafts for a social media bio and a promotional message. Edit them to fit your business.</p></article>
+          <article class="card"><div class="icon">📣</div><h3>Promote your business</h3><p class="muted">Create business copy and a simple week of promotional ideas for WhatsApp and social media.</p></article>
+          <article class="card"><div class="icon">🧮</div><h3>Price and profit</h3><p class="muted">Estimate per-item profit, margin, a target-margin price, and break-even units.</p></article>
+          <article class="card"><div class="icon">🧾</div><h3>Quotes, invoices and records</h3><p class="muted">Prepare a printable sales document and keep a weekly sales, expense, and stock log.</p></article>
         </div>
       </div>
     </section>
@@ -121,7 +160,7 @@
           <p>Enter a few details to create four template-based first drafts for your business.</p>
         </div>
         <div class="tool">
-          <p class="tool-intro">Complete all four fields with a few words or a short phrase. Built-in templates process your entries in this browser; the page does not send them to a server. If you choose Copy all results, the browser writes the generated text to your clipboard. The contact link opens Gmail, but does not attach your entries.</p>
+          <p class="tool-intro">Complete all four fields with a few words or a short phrase. The starter pack is generated in your browser. NovaBridge does not send your entries to a server. The Weekly Tracker saves records in this browser on this device. Copying writes the generated text to your clipboard; the contact link opens Gmail without attaching your entries.</p>
           <form id="businessForm" novalidate>
             <div class="fields">
               <div><label for="businessName">Business or brand name</label><input id="businessName" name="businessName" placeholder="e.g. Sunrise Fashion" aria-describedby="businessNameError" required><p class="field-error" id="businessNameError" hidden></p></div>
@@ -145,17 +184,118 @@
       </div>
     </section>
 
+    <section class="toolkit" id="toolkit">
+      <div class="wrap">
+        <div class="section-heading">
+          <h2>Free Small Business Toolkit</h2>
+          <p>Choose a tool to open it. These tools run in this browser. The weekly tracker saves entries on this device; it does not send them to NovaBridge.</p>
+        </div>
+        <div class="toolkit-cards">
+          <a class="toolkit-card" href="#promotionTool" data-open-tool="promotionTool"><span class="toolkit-icon">📣</span><strong>Promotion Pack</strong><p>Write social and WhatsApp messages and plan a week of posts.</p></a>
+          <a class="toolkit-card" href="#priceTool" data-open-tool="priceTool"><span class="toolkit-icon">🧮</span><strong>Price & Profit</strong><p>Estimate costs, profit, margin, target price, and break-even sales.</p></a>
+          <a class="toolkit-card" href="#invoiceTool" data-open-tool="invoiceTool"><span class="toolkit-icon">🧾</span><strong>Quote & Invoice</strong><p>Prepare a simple document to print or save as PDF.</p></a>
+          <a class="toolkit-card" href="#trackerTool" data-open-tool="trackerTool"><span class="toolkit-icon">📊</span><strong>Weekly Tracker</strong><p>Keep a local log of sales, expenses, and stock movements.</p></a>
+        </div>
+
+        <details class="tool-panel" id="promotionTool">
+          <summary><span>📣</span> Promotion Pack</summary>
+          <div class="tool-panel-body">
+            <p>Make a few business details into messages and a simple seven-day content plan. Personalize each draft before posting.</p>
+            <form id="promotionForm">
+              <div class="tool-fields">
+                <div><label for="promoName">Business name</label><input id="promoName" required maxlength="80" placeholder="e.g. Sunrise Fashion"></div>
+                <div><label for="promoOffer">What are you promoting?</label><input id="promoOffer" required maxlength="120" placeholder="e.g. handmade bags"></div>
+                <div><label for="promoCustomers">Who is it for?</label><input id="promoCustomers" required maxlength="100" placeholder="e.g. commuters and students"></div>
+                <div><label for="promoBenefit">What is the main benefit?</label><input id="promoBenefit" required maxlength="120" placeholder="e.g. durable everyday style"></div>
+                <div><label for="promoChannel">Main channel</label><select id="promoChannel"><option>WhatsApp</option><option>Facebook</option><option>Instagram</option><option>Any social channel</option></select></div>
+                <div><label for="promoAction">How should customers respond?</label><input id="promoAction" maxlength="100" placeholder="e.g. Send us a message to order"></div>
+              </div>
+              <div class="tool-actions"><button class="button button-primary" type="submit">Create promotion pack</button></div>
+            </form>
+            <div class="tool-output" id="promotionOutput" hidden aria-live="polite"></div>
+          </div>
+        </details>
+
+        <details class="tool-panel" id="priceTool">
+          <summary><span>🧮</span> Price & Profit Calculator</summary>
+          <div class="tool-panel-body">
+            <p>Enter your costs and selling price to estimate per-item profit and the price that would meet your target margin. This is a planning estimate; confirm your actual costs and taxes.</p>
+            <form id="priceForm">
+              <div class="tool-fields">
+                <div><label for="priceCurrency">Currency</label><select id="priceCurrency"><option value="KES">KES — Kenyan shilling</option><option value="UGX">UGX — Ugandan shilling</option><option value="TZS">TZS — Tanzanian shilling</option><option value="RWF">RWF — Rwandan franc</option><option value="USD">USD — US dollar</option></select></div>
+                <div><label for="itemName">Product or service</label><input id="itemName" maxlength="100" placeholder="e.g. handmade bag"></div>
+                <div><label for="unitCost">Cost to make or buy one</label><input id="unitCost" type="number" min="0" step="0.01" required></div>
+                <div><label for="extraCost">Other cost per sale</label><input id="extraCost" type="number" min="0" step="0.01" value="0" required></div>
+                <div><label for="salePrice">Current selling price</label><input id="salePrice" type="number" min="0.01" step="0.01" required></div>
+                <div><label for="targetMargin">Target profit margin (%)</label><input id="targetMargin" type="number" min="1" max="90" step="1" value="30" required></div>
+                <div class="full"><label for="fixedCosts">Monthly fixed costs to cover</label><input id="fixedCosts" type="number" min="0" step="0.01" value="0" required><span class="hint">For example, rent or utilities. Break-even uses your current price and contribution per sale.</span></div>
+              </div>
+              <div class="tool-actions"><button class="button button-primary" type="submit">Calculate estimates</button></div>
+            </form>
+            <div class="tool-output" id="priceOutput" hidden aria-live="polite"></div>
+          </div>
+        </details>
+
+        <details class="tool-panel" id="invoiceTool">
+          <summary><span>🧾</span> Quote & Invoice Maker</summary>
+          <div class="tool-panel-body">
+            <p>Create a simple quote or invoice. Use the print button to print or choose “Save as PDF” in your browser. Enter a tax rate only if you know it applies to your transaction.</p>
+            <form id="invoiceForm">
+              <div class="tool-fields">
+                <div><label for="docType">Document type</label><select id="docType"><option value="Quote">Quote</option><option value="Invoice">Invoice</option></select></div>
+                <div><label for="docNumber">Reference number</label><input id="docNumber" maxlength="40" placeholder="e.g. NB-001"></div>
+                <div><label for="issueDate">Issue date</label><input id="issueDate" type="date" required></div>
+                <div><label for="dueDate">Due date (for invoice)</label><input id="dueDate" type="date"></div>
+                <div><label for="sellerName">Your business name</label><input id="sellerName" required maxlength="100"></div>
+                <div><label for="sellerContact">Your phone or email</label><input id="sellerContact" maxlength="100"></div>
+                <div><label for="buyerName">Customer name</label><input id="buyerName" required maxlength="100"></div>
+                <div><label for="buyerContact">Customer contact (optional)</label><input id="buyerContact" maxlength="100"></div>
+                <div class="full"><strong>Items</strong><div id="invoiceItems"></div><button class="button button-secondary" id="addInvoiceItem" type="button">Add another item</button></div>
+                <div><label for="taxRate">Tax rate (%) if applicable</label><input id="taxRate" type="number" min="0" max="100" step="0.01" value="0"></div>
+                <div><label for="invoiceCurrency">Currency</label><select id="invoiceCurrency"><option value="KES">KES — Kenyan shilling</option><option value="UGX">UGX — Ugandan shilling</option><option value="TZS">TZS — Tanzanian shilling</option><option value="RWF">RWF — Rwandan franc</option><option value="USD">USD — US dollar</option></select></div>
+                <div class="full"><label for="docNotes">Notes or payment details (optional)</label><textarea id="docNotes" maxlength="500" placeholder="Add delivery details, payment instructions, or quote terms"></textarea></div>
+              </div>
+              <div class="tool-actions"><button class="button button-primary" type="submit">Create document</button></div>
+            </form>
+            <div class="tool-output" id="invoicePreview" hidden aria-live="polite"></div>
+          </div>
+        </details>
+
+        <details class="tool-panel" id="trackerTool">
+          <summary><span>📊</span> Weekly Sales, Expense & Stock Tracker</summary>
+          <div class="tool-panel-body">
+            <p>Record activity for the week and download a CSV copy when you need one. Entries stay in this browser on this device. This is a simple log, not accounting or tax software.</p>
+            <form id="trackerForm">
+              <div class="tool-fields">
+                <div><label for="recordDate">Date</label><input id="recordDate" type="date" required></div>
+                <div><label for="recordType">Record type</label><select id="recordType"><option value="sale">Sale</option><option value="expense">Expense</option><option value="stock">Stock movement</option></select></div>
+                <div class="full"><label for="recordDescription">What was it?</label><input id="recordDescription" required maxlength="120" placeholder="e.g. 3 lunch orders or flour restock"></div>
+                <div id="recordAmountWrap"><label for="recordAmount">Amount</label><input id="recordAmount" type="number" min="0" step="0.01" required></div>
+                <div id="recordQuantityWrap" hidden><label for="recordQuantity">Quantity (+ received, − used/sold)</label><input id="recordQuantity" type="number" step="1"></div>
+                <div id="recordCurrencyWrap"><label for="trackerCurrency">Currency</label><select id="trackerCurrency"><option value="KES">KES</option><option value="UGX">UGX</option><option value="TZS">TZS</option><option value="RWF">RWF</option><option value="USD">USD</option></select></div>
+              </div>
+              <div class="tool-actions"><button class="button button-primary" type="submit">Add to this week</button><button class="button button-secondary" id="downloadTracker" type="button">Download records (CSV)</button></div>
+            </form>
+            <div class="summary-cards" id="trackerSummary"></div>
+            <div class="table-wrap"><table><thead><tr><th>Date</th><th>Type</th><th>Description</th><th>Amount</th><th>Quantity</th><th></th></tr></thead><tbody id="trackerRows"></tbody></table></div>
+            <p class="hint" id="trackerEmpty">No records for this week yet.</p>
+            <p class="small-note" id="trackerStatus" role="status" aria-live="polite"></p>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <section class="contact" id="contact">
       <div class="wrap">
         <h2>Let's build what's next.</h2>
-        <p>Have a question or feedback about the Free Business Starter Assistant? We'd be glad to hear from you.</p>
+        <p>Have a question or feedback about the NovaBridge Small Business Toolkit? We'd be glad to hear from you.</p>
         <p>Contact us at <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com">contact.novabridgeafrica@gmail.com</a>.</p>
         <p><a class="button button-primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com">Email NovaBridge</a></p>
       </div>
     </section>
   </main>
 
-  <footer><div class="wrap">© <span id="year"></span> NovaBridge. Free Business Starter Assistant. Contact: <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com">contact.novabridgeafrica@gmail.com</a></div></footer>
+  <footer><div class="wrap">© <span id="year"></span> NovaBridge. Free Small Business Toolkit. Contact: <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com">contact.novabridgeafrica@gmail.com</a></div></footer>
 
   <script>
     const form = document.getElementById('businessForm');
@@ -291,5 +431,385 @@
       document.getElementById('businessName').focus();
     });
   </script>
+  <script>
+    (function() {
+      const byId = (id) => document.getElementById(id);
+      const copyToClipboard = async (text, statusNode) => {
+        try {
+          await navigator.clipboard.writeText(text);
+          statusNode.textContent = 'Copied to your clipboard.';
+        } catch (error) {
+          statusNode.textContent = 'Clipboard access is unavailable here. Select the text and copy it manually.';
+        }
+      };
+      const todayValue = () => {
+        const now = new Date();
+        return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+      };
+      const formatMoney = (amount, currency) => {
+        try {
+          return new Intl.NumberFormat(undefined, { style: 'currency', currency, maximumFractionDigits: 2 }).format(amount);
+        } catch (error) {
+          return `${currency} ${Number(amount).toFixed(2)}`;
+        }
+      };
+      const safeDate = (value) => value ? new Date(`${value}T00:00:00`).toLocaleDateString() : 'Not set';
+      const addText = (parent, tag, text, className) => {
+        const node = document.createElement(tag);
+        node.textContent = text;
+        if (className) node.className = className;
+        parent.appendChild(node);
+        return node;
+      };
+
+      document.querySelectorAll('[data-open-tool]').forEach((link) => {
+        link.addEventListener('click', () => {
+          const panel = byId(link.dataset.openTool);
+          if (panel) panel.open = true;
+        });
+      });
+
+      const promotionForm = byId('promotionForm');
+      const promotionOutput = byId('promotionOutput');
+      promotionForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!promotionForm.reportValidity()) return;
+        const name = byId('promoName').value.trim();
+        const offer = byId('promoOffer').value.trim();
+        const customers = byId('promoCustomers').value.trim();
+        const benefit = byId('promoBenefit').value.trim();
+        const channel = byId('promoChannel').value;
+        const action = byId('promoAction').value.trim() || 'Send us a message to learn more.';
+        const messages = [
+          `${name}: ${offer} for ${customers}, with ${benefit}. ${action}`,
+          `Looking for ${benefit}? ${name} offers ${offer} for ${customers}. ${action}`,
+          `A quick introduction to ${name}: we offer ${offer} for ${customers}. Ask us about ${benefit}. ${action}`
+        ];
+        const plan = [
+          `Day 1 — Introduce ${name} and the ${offer}.`,
+          `Day 2 — Explain how ${offer} helps ${customers}.`,
+          `Day 3 — Show a real example, product photo, or short demonstration.`,
+          `Day 4 — Answer a common customer question about ${offer}.`,
+          `Day 5 — Share a real customer comment only with permission; do not invent a testimonial.`,
+          `Day 6 — Explain ${benefit} and who may find it useful.`,
+          `Day 7 — Invite people to take the next step: ${action}`
+        ];
+        const outputText = `${name} — ${channel} Promotion Pack\n\nMessage drafts\n${messages.map((message, index) => `${index + 1}. ${message}`).join('\n\n')}\n\nSeven-day content plan\n${plan.join('\n')}`;
+        promotionOutput.replaceChildren();
+        addText(promotionOutput, 'h3', `${name} promotion pack`);
+        addText(promotionOutput, 'p', `${channel} message drafts`);
+        const messageList = document.createElement('ol');
+        messages.forEach((message) => addText(messageList, 'li', message));
+        promotionOutput.appendChild(messageList);
+        addText(promotionOutput, 'p', 'Seven-day content plan');
+        const planList = document.createElement('ol');
+        plan.forEach((idea) => addText(planList, 'li', idea));
+        promotionOutput.appendChild(planList);
+        addText(promotionOutput, 'p', 'Review each draft, add accurate details, and use customer quotes only with permission.', 'hint');
+        const copyButton = document.createElement('button');
+        copyButton.type = 'button';
+        copyButton.className = 'button button-secondary';
+        copyButton.textContent = 'Copy promotion pack';
+        const status = addText(promotionOutput, 'p', '', 'hint');
+        copyButton.addEventListener('click', () => copyToClipboard(outputText, status));
+        promotionOutput.append(copyButton, status);
+        promotionOutput.hidden = false;
+        promotionOutput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      byId('priceForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const currency = byId('priceCurrency').value;
+        const name = byId('itemName').value.trim() || 'Your item';
+        const unitCost = Number(byId('unitCost').value);
+        const extraCost = Number(byId('extraCost').value);
+        const salePrice = Number(byId('salePrice').value);
+        const targetMargin = Number(byId('targetMargin').value);
+        const fixedCosts = Number(byId('fixedCosts').value);
+        const totalCost = unitCost + extraCost;
+        const profit = salePrice - totalCost;
+        const margin = (profit / salePrice) * 100;
+        const targetPrice = totalCost / (1 - targetMargin / 100);
+        const breakEven = profit > 0 ? Math.ceil(fixedCosts / profit) : null;
+        const output = byId('priceOutput');
+        output.replaceChildren();
+        addText(output, 'h3', `${name} estimate`);
+        addText(output, 'p', `Total cost per sale: ${formatMoney(totalCost, currency)}`);
+        addText(output, 'p', `Profit at your current price: ${formatMoney(profit, currency)} per sale`);
+        addText(output, 'p', `Estimated margin at your current price: ${margin.toFixed(1)}%`);
+        addText(output, 'p', `Price for a ${targetMargin}% target margin: ${formatMoney(targetPrice, currency)}`);
+        addText(output, 'p', breakEven === null
+          ? 'Break-even cannot be estimated at this price because it does not cover the entered per-sale costs.'
+          : `Estimated break-even: ${breakEven} sales to cover ${formatMoney(fixedCosts, currency)} in monthly fixed costs.`);
+        addText(output, 'p', 'This estimate excludes costs you did not enter, taxes, discounts, and unsold stock.', 'hint');
+        output.hidden = false;
+      });
+
+      const invoiceItems = byId('invoiceItems');
+      let invoiceRowCount = 0;
+      function addInvoiceRow() {
+        invoiceRowCount += 1;
+        const row = document.createElement('div');
+        row.className = 'item-row';
+        row.dataset.invoiceRow = String(invoiceRowCount);
+        const fields = [
+          ['Item or service', 'text', 'item-description', 'e.g. tailoring service'],
+          ['Qty', 'number', 'item-quantity', '1'],
+          ['Unit price', 'number', 'item-price', '0.00']
+        ];
+        fields.forEach(([labelText, type, className, placeholder]) => {
+          const wrapper = document.createElement('div');
+          const input = document.createElement('input');
+          const id = `invoice-${className}-${invoiceRowCount}`;
+          input.id = id;
+          input.className = className;
+          input.type = type;
+          input.required = true;
+          input.placeholder = placeholder;
+          if (type === 'number') {
+            input.min = className === 'item-quantity' ? '1' : '0';
+            input.step = className === 'item-quantity' ? '1' : '0.01';
+          }
+          const label = document.createElement('label');
+          label.htmlFor = id;
+          label.textContent = labelText;
+          wrapper.append(label, input);
+          row.appendChild(wrapper);
+        });
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'remove-row';
+        remove.textContent = 'Remove';
+        remove.setAttribute('aria-label', 'Remove this invoice item');
+        remove.addEventListener('click', () => {
+          if (invoiceItems.children.length > 1) row.remove();
+        });
+        row.appendChild(remove);
+        invoiceItems.appendChild(row);
+      }
+      addInvoiceRow();
+      byId('addInvoiceItem').addEventListener('click', addInvoiceRow);
+      byId('issueDate').value = todayValue();
+      byId('docType').addEventListener('change', () => {
+        const invoiceMode = byId('docType').value === 'Invoice';
+        byId('dueDate').required = invoiceMode;
+        byId('dueDate').previousElementSibling.textContent = invoiceMode ? 'Due date' : 'Due date (optional)';
+      });
+      let lastInvoiceReminder = '';
+      byId('invoiceForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const type = byId('docType').value;
+        const currency = byId('invoiceCurrency').value;
+        const rows = Array.from(invoiceItems.querySelectorAll('.item-row')).map((row) => ({
+          description: row.querySelector('.item-description').value.trim(),
+          quantity: Number(row.querySelector('.item-quantity').value),
+          price: Number(row.querySelector('.item-price').value)
+        }));
+        const subtotal = rows.reduce((sum, row) => sum + row.quantity * row.price, 0);
+        const taxRate = Number(byId('taxRate').value || 0);
+        const tax = subtotal * taxRate / 100;
+        const total = subtotal + tax;
+        const number = byId('docNumber').value.trim() || `NB-${todayValue().replaceAll('-', '')}`;
+        const seller = byId('sellerName').value.trim();
+        const buyer = byId('buyerName').value.trim();
+        const due = byId('dueDate').value;
+        const notes = byId('docNotes').value.trim();
+        lastInvoiceReminder = `${type === 'Invoice' ? 'Payment reminder' : 'Quote follow-up'} for ${number}\n\nHello ${buyer},\nThis is a friendly ${type === 'Invoice' ? 'reminder that invoice' : 'follow-up on quote'} ${number} from ${seller} for ${formatMoney(total, currency)}${due ? ` was due on ${safeDate(due)}` : ''}. Please let us know if you have any questions. Thank you.`;
+        const preview = byId('invoicePreview');
+        preview.replaceChildren();
+        addText(preview, 'h3', `${type} ${number}`);
+        addText(preview, 'p', `From: ${seller}${byId('sellerContact').value.trim() ? ` · ${byId('sellerContact').value.trim()}` : ''}`);
+        addText(preview, 'p', `To: ${buyer}${byId('buyerContact').value.trim() ? ` · ${byId('buyerContact').value.trim()}` : ''}`);
+        addText(preview, 'p', `Issued: ${safeDate(byId('issueDate').value)}${due ? ` · Due: ${safeDate(due)}` : ''}`);
+        const table = document.createElement('table');
+        const head = document.createElement('thead');
+        const headRow = document.createElement('tr');
+        ['Item', 'Qty', 'Unit price', 'Line total'].forEach((label) => addText(headRow, 'th', label));
+        head.appendChild(headRow);
+        table.appendChild(head);
+        const body = document.createElement('tbody');
+        rows.forEach((row) => {
+          const tr = document.createElement('tr');
+          [row.description, String(row.quantity), formatMoney(row.price, currency), formatMoney(row.price * row.quantity, currency)].forEach((text) => addText(tr, 'td', text));
+          body.appendChild(tr);
+        });
+        table.appendChild(body);
+        preview.appendChild(table);
+        addText(preview, 'p', `Subtotal: ${formatMoney(subtotal, currency)}`);
+        if (taxRate > 0) addText(preview, 'p', `Tax (${taxRate}%): ${formatMoney(tax, currency)}`);
+        addText(preview, 'p', `Total: ${formatMoney(total, currency)}`);
+        if (notes) addText(preview, 'p', `Notes: ${notes}`);
+        addText(preview, 'p', 'Check the details and applicable requirements before sending this document.', 'hint');
+        const controls = document.createElement('div');
+        controls.className = 'tool-actions';
+        const printButton = document.createElement('button');
+        printButton.type = 'button';
+        printButton.className = 'button button-primary';
+        printButton.textContent = 'Print or save as PDF';
+        printButton.addEventListener('click', () => {
+          document.body.classList.add('printing');
+          window.print();
+          window.setTimeout(() => document.body.classList.remove('printing'), 1000);
+        });
+        const copyButton = document.createElement('button');
+        copyButton.type = 'button';
+        copyButton.className = 'button button-secondary';
+        copyButton.textContent = 'Copy payment reminder';
+        const copyStatus = addText(controls, 'span', '', 'hint');
+        copyButton.addEventListener('click', () => copyToClipboard(lastInvoiceReminder, copyStatus));
+        controls.append(printButton, copyButton);
+        preview.appendChild(controls);
+        preview.hidden = false;
+        preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+
+      const trackerKey = 'novabridge-weekly-records-v1';
+      let trackerRecords = [];
+      try {
+        const saved = JSON.parse(localStorage.getItem(trackerKey) || '[]');
+        if (Array.isArray(saved)) trackerRecords = saved.filter((record) => record && record.id && record.date && record.type);
+      } catch (error) {
+        trackerRecords = [];
+      }
+      byId('recordDate').value = todayValue();
+      const recordType = byId('recordType');
+      const amountWrap = byId('recordAmountWrap');
+      const quantityWrap = byId('recordQuantityWrap');
+      const recordAmount = byId('recordAmount');
+      const recordQuantity = byId('recordQuantity');
+      function updateRecordFields() {
+        const stockMode = recordType.value === 'stock';
+        amountWrap.hidden = stockMode;
+        quantityWrap.hidden = !stockMode;
+        byId('recordCurrencyWrap').hidden = stockMode;
+        recordAmount.required = !stockMode;
+        recordQuantity.required = stockMode;
+      }
+      recordType.addEventListener('change', updateRecordFields);
+      updateRecordFields();
+      function weekStart(date) {
+        const start = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        const day = (start.getDay() + 6) % 7;
+        start.setDate(start.getDate() - day);
+        return start;
+      }
+      const thisWeekStart = weekStart(new Date());
+      const thisWeekEnd = new Date(thisWeekStart);
+      thisWeekEnd.setDate(thisWeekEnd.getDate() + 6);
+      const dateInputValue = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+      byId('recordDate').min = dateInputValue(thisWeekStart);
+      byId('recordDate').max = dateInputValue(thisWeekEnd);
+      function renderTracker() {
+        const start = weekStart(new Date());
+        const end = new Date(start);
+        end.setDate(end.getDate() + 7);
+        const thisWeek = trackerRecords.filter((record) => {
+          const date = new Date(`${record.date}T00:00:00`);
+          return date >= start && date < end;
+        }).sort((a, b) => b.date.localeCompare(a.date));
+        const currencies = [...new Set(thisWeek.filter((record) => record.type !== 'stock').map((record) => record.currency))];
+        const summary = byId('trackerSummary');
+        summary.replaceChildren();
+        currencies.forEach((currency) => {
+          const sales = thisWeek.filter((record) => record.type === 'sale' && record.currency === currency).reduce((sum, record) => sum + record.amount, 0);
+          const expenses = thisWeek.filter((record) => record.type === 'expense' && record.currency === currency).reduce((sum, record) => sum + record.amount, 0);
+          const card = document.createElement('div');
+          card.className = 'summary-card';
+          addText(card, 'span', `${currency} this week`);
+          addText(card, 'strong', `Sales ${formatMoney(sales, currency)} · Expenses ${formatMoney(expenses, currency)} · Difference ${formatMoney(sales - expenses, currency)}`);
+          summary.appendChild(card);
+        });
+        const stockCount = thisWeek.filter((record) => record.type === 'stock').length;
+        if (stockCount) {
+          const card = document.createElement('div');
+          card.className = 'summary-card';
+          addText(card, 'span', 'Stock log');
+          addText(card, 'strong', `${stockCount} stock movement${stockCount === 1 ? '' : 's'} this week`);
+          summary.appendChild(card);
+        }
+        const body = byId('trackerRows');
+        body.replaceChildren();
+        thisWeek.forEach((record) => {
+          const row = document.createElement('tr');
+          addText(row, 'td', safeDate(record.date));
+          addText(row, 'td', record.type === 'sale' ? 'Sale' : record.type === 'expense' ? 'Expense' : 'Stock');
+          addText(row, 'td', record.description);
+          addText(row, 'td', record.type === 'stock' ? '—' : formatMoney(record.amount, record.currency));
+          addText(row, 'td', record.type === 'stock' ? String(record.quantity) : '—');
+          const deleteCell = document.createElement('td');
+          const remove = document.createElement('button');
+          remove.type = 'button';
+          remove.className = 'remove-row';
+          remove.textContent = 'Remove';
+          remove.setAttribute('aria-label', `Remove ${record.description}`);
+          remove.addEventListener('click', () => {
+            if (!window.confirm(`Remove the record “${record.description}”? This cannot be undone.`)) return;
+            trackerRecords = trackerRecords.filter((item) => item.id !== record.id);
+            try { localStorage.setItem(trackerKey, JSON.stringify(trackerRecords)); } catch (error) { /* Keep the in-memory view usable. */ }
+            renderTracker();
+          });
+          deleteCell.appendChild(remove);
+          row.appendChild(deleteCell);
+          body.appendChild(row);
+        });
+        byId('trackerEmpty').hidden = thisWeek.length > 0;
+      }
+      byId('trackerForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const type = recordType.value;
+        const record = {
+          id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+          date: byId('recordDate').value,
+          type,
+          description: byId('recordDescription').value.trim(),
+          amount: type === 'stock' ? 0 : Number(recordAmount.value),
+          quantity: type === 'stock' ? Number(recordQuantity.value) : null,
+          currency: type === 'stock' ? null : byId('trackerCurrency').value
+        };
+        const updated = [...trackerRecords, record];
+        try {
+          localStorage.setItem(trackerKey, JSON.stringify(updated));
+          trackerRecords = updated;
+          byId('trackerStatus').textContent = 'Record saved in this browser on this device.';
+          byId('recordDescription').value = '';
+          recordAmount.value = '';
+          recordQuantity.value = '';
+          renderTracker();
+        } catch (error) {
+          byId('trackerStatus').textContent = 'The browser could not save this record. Download your existing records and try again.';
+        }
+      });
+      byId('downloadTracker').addEventListener('click', () => {
+        if (!trackerRecords.length) {
+          byId('trackerStatus').textContent = 'There are no records to download yet.';
+          return;
+        }
+        const escapeCsv = (value) => {
+          let text = String(value ?? '');
+          if (/^\s*[=+\-@]/.test(text)) text = `'${text}`;
+          return `"${text.replaceAll('"', '""')}"`;
+        };
+        const csvRows = [['Date', 'Type', 'Description', 'Amount', 'Currency', 'Quantity'], ...trackerRecords.map((record) => [record.date, record.type, record.description, record.amount || '', record.currency || '', record.quantity ?? ''])];
+        const csv = '\ufeff' + csvRows.map((row) => row.map(escapeCsv).join(',')).join('\r\n');
+        const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `novabridge-business-records-${todayValue()}.csv`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        byId('trackerStatus').textContent = 'CSV downloaded. Store it somewhere safe.';
+      });
+      renderTracker();
+    })();
+  </script>
 </body>
 </html>
+
