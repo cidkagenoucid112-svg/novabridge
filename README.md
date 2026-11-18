@@ -1,14 +1,15 @@
 # NovaBridge
 
-NovaBridge is a free, browser-based Business Starter Assistant for entrepreneurs and small businesses. It uses built-in JavaScript templates to create first drafts of a business tagline, business description, social media bio, and promotional message from a business name, activity, customer group, and main benefit. It does not use AI or contact a server to generate results.
-
-The form requires all four fields. Blank and whitespace-only entries are rejected, with an inline message linked to each field and focus moved to the first invalid field. Generated copy is a starting point: review the wording and verify claims before using it.
+NovaBridge is a free, browser-based toolkit for entrepreneurs and small businesses. It includes a template-based Business Starter Pack, a promotion pack generator, a price and profit calculator, a quote and invoice maker, and a weekly sales, expense, and stock tracker.
 
 ## Privacy
 
-The page processes form entries and generates drafts in the browser. It does not send those entries to a server or store them. If you choose **Copy all results**, the browser writes the generated text to the clipboard. The contact links open a Gmail compose page addressed to NovaBridge; they do not include or attach form entries.
+The tools calculate and generate outputs in the browser and do not send business entries to a server. The weekly tracker saves records in the browser's local storage on the device in use. Records remain until removed or the browser's site data is cleared. Use the CSV download to keep a separate copy. Avoid entering sensitive customer or financial details on a shared device. Copying writes text to the clipboard; printing or saving a document as PDF uses the browser's print dialog. Contact links open Gmail without attaching tool entries.
+
+The price calculator provides estimates based on values the user enters. Users should check all costs and applicable taxes. The quote and invoice maker is a simple document template, not accounting or tax software.
 
 ## Project files
 
-- `index.html` contains the complete static site, styles, form, and template logic.
+- `index.html` contains the static site, styles, forms, and browser-based tool logic.
 - There is no build step, package manifest, or automated test framework in this project.
+
