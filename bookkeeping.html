@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Bookkeeping and monthly management reporting support for small businesses.">
   <title>Bookkeeping & Monthly Reporting | NovaBridge</title>
+  <link rel="canonical" href="https://cidkagenoucid112-svg.github.io/novabridge/bookkeeping.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NovaBridge">
+  <meta property="og:title" content="Bookkeeping & Monthly Reporting | NovaBridge">
+  <meta property="og:description" content="Organize business records and receive practical monthly management summaries.">
+  <meta property="og:url" content="https://cidkagenoucid112-svg.github.io/novabridge/bookkeeping.html">
+  <meta name="twitter:card" content="summary">
   <style>
     :root{--navy:#101b35;--blue:#4263eb;--cyan:#22c7c9;--ink:#18233b;--muted:#64708a;--paper:#f5f7fc;--white:#fff}
     *{box-sizing:border-box}
@@ -23,6 +30,8 @@
     .hero p{font-size:1.12rem;color:#e0e8ff;max-width:700px}
     .button{display:inline-block;border:0;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;cursor:pointer}
     .button-primary{background:var(--cyan);color:#09223b}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .hero-actions button{font:inherit;cursor:pointer}
     section{padding:42px 0}
     h2{font-size:1.7rem;color:var(--navy);margin:0 0 12px}
     h3{color:var(--navy);margin:0 0 8px}
@@ -37,15 +46,14 @@
 <body>
   <header><div class="wrap nav">
     <a class="brand" href="index.html">Nova<span>Bridge</span></a>
-    <nav aria-label="Main navigation"><a href="index.html#services">Services</a><a href="index.html#toolkit">Free business tools</a><a href="index.html#contact">Contact</a></nav>
+    <nav aria-label="Main navigation"><a href="index.html#services">Services</a><a href="resources.html">Resources</a><a href="index.html#toolkit">Free business tools</a><a href="index.html#contact">Contact</a></nav>
   </div></header>
   <main>
     <section class="hero"><div class="wrap">
       <div class="eyebrow">Business support for growing businesses</div>
       <h1>Bookkeeping & Monthly Reporting</h1>
       <p>Keep your business records organized and get a clearer monthly view of income, costs, and cash flow.</p>
-      <a class="button button-primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com&amp;su=Bookkeeping%20and%20monthly%20reporting">Ask for a quote</a>
-    </div></section>
+      <div class="hero-actions"><a class="button button-primary" href="index.html?service=bookkeeping#contact">Request a quote</a><button class="button button-primary" type="button" data-share-page data-share-status="shareStatus">Share this page</button></div><p class="muted" id="shareStatus" role="status" aria-live="polite"></p>    </div></section>
     <section><div class="wrap"><p class="muted">Service availability and requirements vary by country. We’ll confirm local accounting, payroll, tax, and company-registration requirements for your location. Work that requires a local professional or registration will be handled with an appropriately qualified partner where needed.</p></div></section>
     <section><div class="wrap grid">
       <article class="card"><h2>What’s included</h2><ul><li>Organize income and expense records from documents you provide</li><li>Reconcile agreed bank, mobile-money, and cash records against your statements</li><li>Prepare agreed monthly management summaries</li><li>Highlight missing records and questions for your review</li></ul></article>
@@ -58,5 +66,24 @@
     <section><div class="wrap"><h2>Need a different kind of help?</h2><p>See the other <a href="index.html#services">NovaBridge services</a> or explore the <a href="index.html#toolkit">free business toolkit</a>.</p><a class="button button-primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com&amp;su=Bookkeeping%20and%20monthly%20reporting">Contact NovaBridge</a></div></section>
   </main>
   <footer><div class="wrap">NovaBridge · Business support for growing businesses · <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com">contact.novabridgeafrica@gmail.com</a></div></footer>
+<script>
+  document.querySelectorAll('[data-share-page]').forEach((button) => {
+    const status = document.getElementById(button.dataset.shareStatus);
+    button.addEventListener('click', async () => {
+      try {
+        const data = { title: document.title, text: 'NovaBridge — practical support for growing businesses.', url: window.location.href };
+        if (navigator.share) {
+          await navigator.share(data);
+          if (status) status.textContent = 'Thanks for sharing this page.';
+        } else {
+          await navigator.clipboard.writeText(data.url);
+          if (status) status.textContent = 'Page link copied.';
+        }
+      } catch (error) {
+        if (status) status.textContent = error.name === 'AbortError' ? '' : 'Copy the page address from your browser to share it.';
+      }
+    });
+  });
+</script>
 </body>
 </html>
