@@ -222,7 +222,7 @@
             <p>Enter your costs and selling price to estimate per-item profit and the price that would meet your target margin. This is a planning estimate; confirm your actual costs and taxes.</p>
             <form id="priceForm">
               <div class="tool-fields">
-                <div><label for="priceCurrency">Currency</label><select id="priceCurrency"><option value="" selected disabled>Choose your currency</option></select></div>
+                <div><label for="priceCurrency">Currency</label><select id="priceCurrency" required><option value="" selected disabled>Choose your currency</option></select></div>
                 <div><label for="itemName">Product or service</label><input id="itemName" maxlength="100" placeholder="e.g. handmade bag"></div>
                 <div><label for="unitCost">Cost to make or buy one</label><input id="unitCost" type="number" min="0" step="0.01" required></div>
                 <div><label for="extraCost">Other cost per sale</label><input id="extraCost" type="number" min="0" step="0.01" value="0" required></div>
@@ -252,7 +252,7 @@
                 <div><label for="buyerContact">Customer contact (optional)</label><input id="buyerContact" maxlength="100"></div>
                 <div class="full"><strong>Items</strong><div id="invoiceItems"></div><button class="button button-secondary" id="addInvoiceItem" type="button">Add another item</button></div>
                 <div><label for="taxRate">Tax rate (%) if applicable</label><input id="taxRate" type="number" min="0" max="100" step="0.01" value="0"></div>
-                <div><label for="invoiceCurrency">Currency</label><select id="invoiceCurrency"><option value="" selected disabled>Choose your currency</option></select></div>
+                <div><label for="invoiceCurrency">Currency</label><select id="invoiceCurrency" required><option value="" selected disabled>Choose your currency</option></select></div>
                 <div class="full"><label for="docNotes">Notes or payment details (optional)</label><textarea id="docNotes" maxlength="500" placeholder="Add delivery details, payment instructions, or quote terms"></textarea></div>
               </div>
               <div class="tool-actions"><button class="button button-primary" type="submit">Create document</button></div>
@@ -272,7 +272,7 @@
                 <div class="full"><label for="recordDescription">What was it?</label><input id="recordDescription" required maxlength="120" placeholder="e.g. 3 lunch orders or flour restock"></div>
                 <div id="recordAmountWrap"><label for="recordAmount">Amount</label><input id="recordAmount" type="number" min="0" step="0.01" required></div>
                 <div id="recordQuantityWrap" hidden><label for="recordQuantity">Quantity (+ received, − used/sold)</label><input id="recordQuantity" type="number" step="1"></div>
-                <div id="recordCurrencyWrap"><label for="trackerCurrency">Currency</label><select id="trackerCurrency"><option value="" selected disabled>Choose your currency</option></select></div>
+                <div id="recordCurrencyWrap"><label for="trackerCurrency">Currency</label><select id="trackerCurrency" required><option value="" selected disabled>Choose your currency</option></select></div>
               </div>
               <div class="tool-actions"><button class="button button-primary" type="submit">Add to this week</button><button class="button button-secondary" id="downloadTracker" type="button">Download records (CSV)</button></div>
             </form>
