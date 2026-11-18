@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free checklists and message templates to help small businesses organize records and follow up on invoices.">
+  <link rel="canonical" href="https://cidkagenoucid112-svg.github.io/novabridge/resources.html">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="NovaBridge">
+  <meta property="og:title" content="Free Business Resources | NovaBridge">
+  <meta property="og:description" content="Practical checklists and reusable templates for growing businesses.">
+  <meta property="og:url" content="https://cidkagenoucid112-svg.github.io/novabridge/resources.html">
+  <meta name="twitter:card" content="summary">
+  <title>Free Business Resources | NovaBridge</title>
+  <style>
+    :root{--navy:#101b35;--cyan:#22c7c9;--ink:#18233b;--muted:#64708a;--paper:#f5f7fc}
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65}
+    a{color:inherit}.wrap{width:min(1050px,92%);margin:auto}header{background:var(--navy);color:white;padding:18px 0}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-size:1.35rem;font-weight:800;text-decoration:none}.brand span{color:var(--cyan)}
+    nav{display:flex;gap:16px;flex-wrap:wrap}nav a{color:#e4eaff;text-decoration:none}
+    .hero{background:linear-gradient(135deg,#101b35,#233d78 65%,#245f88);color:white;padding:54px 0}.eyebrow{color:#80f0e6;text-transform:uppercase;letter-spacing:2px;font-size:.78rem;font-weight:700}
+    h1{font-size:clamp(2.2rem,6vw,3.5rem);line-height:1.1;margin:12px 0}.hero p{max-width:700px;color:#e0e8ff;font-size:1.1rem}
+    section{padding:42px 0}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;padding:24px;border-radius:15px;box-shadow:0 8px 28px rgba(24,42,80,.06)}
+    h2{font-size:1.3rem;color:var(--navy);margin-top:0}.muted{color:var(--muted)}
+    .button{display:inline-block;border:0;border-radius:10px;padding:12px 18px;font-weight:700;text-decoration:none;background:var(--cyan);color:#09223b;cursor:pointer}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}.notice{background:#edf2ff;border-radius:12px;padding:18px}
+    input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #f0a202;outline-offset:3px}
+    footer{background:#0a1225;color:#aebbd8;text-align:center;padding:20px;font-size:.9rem}
+    @media(max-width:760px){.nav{align-items:flex-start;flex-direction:column}.cards{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="index.html">Nova<span>Bridge</span></a><nav aria-label="Main navigation"><a href="index.html#services">Services</a><a href="index.html#toolkit">Free tools</a><a href="index.html#contact">Contact</a></nav></div></header>
+<main>
+  <section class="hero"><div class="wrap"><div class="eyebrow">Free and ready to use</div><h1>Business resources</h1><p>Simple checklists and message templates you can adapt to your business. Start with a free tool or ask us for practical support.</p><div class="actions"><a class="button" href="index.html#toolkit">Explore free tools</a><button class="button" type="button" data-share-page data-share-status="shareStatus">Share this library</button></div><p id="shareStatus" role="status" aria-live="polite"></p></div></section>
+  <section><div class="wrap"><div class="cards">
+    <article class="card"><h2>Monthly records checklist</h2><p class="muted">A reusable checklist of records to gather and review at the end of each month.</p><p><a class="button" href="monthly-records-checklist.csv" download>Download checklist (CSV)</a></p></article>
+    <article class="card"><h2>Invoice follow-up messages</h2><p class="muted">Three courteous message drafts for upcoming, due, and overdue invoices.</p><p><a class="button" href="invoice-follow-up-templates.txt" download>Download message templates</a></p></article>
+    <article class="card"><h2>Weekly business review sheet</h2><p class="muted">A lightweight worksheet for reflecting on the week and choosing a next priority.</p><p><a class="button" href="weekly-business-review.csv" download>Download worksheet (CSV)</a></p></article>
+  </div></div></section>
+  <section><div class="wrap notice"><h2>Use these as starting points</h2><p>Adapt the resources to your business and local requirements. They are general organizational aids, not accounting, tax, or legal advice.</p></div></section>
+</main>
+<footer><div class="wrap">NovaBridge · <a href="index.html#contact">Contact us</a></div></footer>
+<script>
+  document.querySelectorAll('[data-share-page]').forEach((button) => {
+    const status = document.getElementById(button.dataset.shareStatus);
+    button.addEventListener('click', async () => {
+      try {
+        const data = { title: document.title, text: 'NovaBridge — practical support for growing businesses.', url: window.location.href };
+        if (navigator.share) {
+          await navigator.share(data);
+          if (status) status.textContent = 'Thanks for sharing this page.';
+        } else {
+          await navigator.clipboard.writeText(data.url);
+          if (status) status.textContent = 'Page link copied.';
+        }
+      } catch (error) {
+        if (status) status.textContent = error.name === 'AbortError' ? '' : 'Copy the page address from your browser to share it.';
+      }
+    });
+  });
+</script>
+</body></html>
