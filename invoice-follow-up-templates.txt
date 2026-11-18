@@ -1,0 +1,28 @@
+INVOICE FOLLOW-UP MESSAGE STARTERS
+Adapt the wording and check the amount, invoice number, and due date before sending.
+
+1. Friendly reminder before the due date
+Subject: Reminder: invoice [invoice number] due [due date]
+
+Hello [customer name],
+A quick reminder that invoice [invoice number] for [amount] is due on [due date]. Please let me know if you need another copy or have any questions.
+Thank you,
+[business name]
+
+2. Due-date reminder
+Subject: Invoice [invoice number] due today
+
+Hello [customer name],
+This is a reminder that invoice [invoice number] for [amount] is due today, [due date]. Please let us know when payment has been arranged, or contact us if anything needs clarifying.
+Thank you,
+[business name]
+
+3. Polite overdue follow-up
+Subject: Follow-up: invoice [invoice number]
+
+Hello [customer name],
+Our records show that invoice [invoice number] for [amount], due on [due date], may still be outstanding. If payment has already been made, please disregard this note and share the payment reference if convenient. Otherwise, please let us know when we can expect payment or if you have a question.
+Thank you,
+[business name]
+
+These are general wording examples. Check any contract terms and local rules before using them.
