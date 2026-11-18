@@ -222,7 +222,7 @@
             <p>Enter your costs and selling price to estimate per-item profit and the price that would meet your target margin. This is a planning estimate; confirm your actual costs and taxes.</p>
             <form id="priceForm">
               <div class="tool-fields">
-                <div><label for="priceCurrency">Currency</label><select id="priceCurrency" required><option value="" selected disabled>Choose your currency</option></select></div>
+                <div><label for="priceCurrencySearch">Search currencies</label><input id="priceCurrencySearch" type="search" placeholder="Search currency or code" autocomplete="off" aria-controls="priceCurrency"><label for="priceCurrency">Choose your currency</label><select id="priceCurrency" required aria-describedby="priceCurrencyStatus"><option value="" selected disabled>Choose your currency</option></select><span class="hint" id="priceCurrencyStatus" role="status" aria-live="polite"></span></div>
                 <div><label for="itemName">Product or service</label><input id="itemName" maxlength="100" placeholder="e.g. handmade bag"></div>
                 <div><label for="unitCost">Cost to make or buy one</label><input id="unitCost" type="number" min="0" step="0.01" required></div>
                 <div><label for="extraCost">Other cost per sale</label><input id="extraCost" type="number" min="0" step="0.01" value="0" required></div>
@@ -252,7 +252,7 @@
                 <div><label for="buyerContact">Customer contact (optional)</label><input id="buyerContact" maxlength="100"></div>
                 <div class="full"><strong>Items</strong><div id="invoiceItems"></div><button class="button button-secondary" id="addInvoiceItem" type="button">Add another item</button></div>
                 <div><label for="taxRate">Tax rate (%) if applicable</label><input id="taxRate" type="number" min="0" max="100" step="0.01" value="0"></div>
-                <div><label for="invoiceCurrency">Currency</label><select id="invoiceCurrency" required><option value="" selected disabled>Choose your currency</option></select></div>
+                <div><label for="invoiceCurrencySearch">Search currencies</label><input id="invoiceCurrencySearch" type="search" placeholder="Search currency or code" autocomplete="off" aria-controls="invoiceCurrency"><label for="invoiceCurrency">Choose your currency</label><select id="invoiceCurrency" required aria-describedby="invoiceCurrencyStatus"><option value="" selected disabled>Choose your currency</option></select><span class="hint" id="invoiceCurrencyStatus" role="status" aria-live="polite"></span></div>
                 <div class="full"><label for="docNotes">Notes or payment details (optional)</label><textarea id="docNotes" maxlength="500" placeholder="Add delivery details, payment instructions, or quote terms"></textarea></div>
               </div>
               <div class="tool-actions"><button class="button button-primary" type="submit">Create document</button></div>
@@ -272,7 +272,7 @@
                 <div class="full"><label for="recordDescription">What was it?</label><input id="recordDescription" required maxlength="120" placeholder="e.g. 3 lunch orders or flour restock"></div>
                 <div id="recordAmountWrap"><label for="recordAmount">Amount</label><input id="recordAmount" type="number" min="0" step="0.01" required></div>
                 <div id="recordQuantityWrap" hidden><label for="recordQuantity">Quantity (+ received, − used/sold)</label><input id="recordQuantity" type="number" step="1"></div>
-                <div id="recordCurrencyWrap"><label for="trackerCurrency">Currency</label><select id="trackerCurrency" required><option value="" selected disabled>Choose your currency</option></select></div>
+                <div id="recordCurrencyWrap"><label for="trackerCurrencySearch">Search currencies</label><input id="trackerCurrencySearch" type="search" placeholder="Search currency or code" autocomplete="off" aria-controls="trackerCurrency"><label for="trackerCurrency">Choose your currency</label><select id="trackerCurrency" required aria-describedby="trackerCurrencyStatus"><option value="" selected disabled>Choose your currency</option></select><span class="hint" id="trackerCurrencyStatus" role="status" aria-live="polite"></span></div>
               </div>
               <div class="tool-actions"><button class="button button-primary" type="submit">Add to this week</button><button class="button button-secondary" id="downloadTracker" type="button">Download records (CSV)</button></div>
             </form>
@@ -510,16 +510,42 @@
       const safeDate = (value) => value ? new Date(`${value}T00:00:00`).toLocaleDateString() : 'Not set';
       const activeCurrencies = ["AED","AFN","ALL","AMD","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BHD","BIF","BMD","BND","BOB","BRL","BSD","BTN","BWP","BYN","BZD","CAD","CDF","CHF","CLP","CNY","COP","CRC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB","EUR","FJD","FKP","GBP","GEL","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HTG","HUF","IDR","ILS","INR","IQD","IRR","ISK","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD","KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRU","MUR","MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP","PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLE","SOS","SRD","SSP","STN","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TWD","TZS","UAH","UGX","USD","UYU","UZS","VES","VND","VUV","WST","XAF","XCD","XCG","XOF","XPF","YER","ZAR","ZMW","ZWG"];
       const currencyNames = new Intl.DisplayNames(['en'], { type: 'currency' });
+      const currencyOptions = activeCurrencies
+        .map((code) => ({ code, name: currencyNames.of(code) || code }))
+        .sort((a, b) => a.name.localeCompare(b.name) || a.code.localeCompare(b.code));
       ['priceCurrency', 'invoiceCurrency', 'trackerCurrency'].forEach((id) => {
         const select = byId(id);
-        const options = activeCurrencies.map((code) => ({ code, name: currencyNames.of(code) || code }));
-        options.sort((a, b) => a.name.localeCompare(b.name) || a.code.localeCompare(b.code));
-        options.forEach(({ code, name }) => {
-          const option = document.createElement('option');
-          option.value = code;
-          option.textContent = `${name} (${code})`;
-          select.appendChild(option);
-        });
+        const search = byId(`${id}Search`);
+        const status = byId(`${id}Status`);
+        const placeholder = document.createElement('option');
+        placeholder.value = '';
+        placeholder.textContent = 'Choose your currency';
+        placeholder.disabled = true;
+        function renderCurrencyOptions() {
+          const query = search.value.trim().toLocaleLowerCase();
+          const matches = currencyOptions.filter(({ code, name }) =>
+            `${name} ${code}`.toLocaleLowerCase().includes(query)
+          );
+          const selectedCode = select.value;
+          const selectedOption = currencyOptions.find((option) => option.code === selectedCode);
+          const visibleOptions = selectedOption && !matches.some((option) => option.code === selectedCode)
+            ? [selectedOption, ...matches]
+            : matches;
+          select.replaceChildren(placeholder.cloneNode(true));
+          visibleOptions.forEach(({ code, name }) => {
+            const option = document.createElement('option');
+            option.value = code;
+            option.textContent = `${name} (${code})`;
+            select.appendChild(option);
+          });
+          select.value = selectedCode || '';
+          if (!selectedCode) select.options[0].selected = true;
+          status.textContent = query
+            ? `${matches.length} matching currenc${matches.length === 1 ? 'y' : 'ies'}.`
+            : `${currencyOptions.length} currencies available.`;
+        }
+        search.addEventListener('input', renderCurrencyOptions);
+        renderCurrencyOptions();
       });
       const addText = (parent, tag, text, className) => {
         const node = document.createElement(tag);
