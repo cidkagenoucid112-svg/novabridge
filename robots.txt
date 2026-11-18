@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://cidkagenoucid112-svg.github.io/novabridge/sitemap.xml
