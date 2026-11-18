@@ -4,8 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Free browser-based tools to help small businesses promote their work, estimate prices, prepare invoices and track the week.">
-  <title>Free Small Business Toolkit | NovaBridge</title>
+  <meta name="description" content="Free small business tools and practical services for bookkeeping, business documents, invoicing, and accounting software setup.">
+  <link rel="canonical" href="https://cidkagenoucid112-svg.github.io/novabridge/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NovaBridge">
+  <meta property="og:title" content="NovaBridge | Free Small Business Tools & Services">
+  <meta property="og:description" content="Free tools and practical business support for growing businesses.">
+  <meta property="og:url" content="https://cidkagenoucid112-svg.github.io/novabridge/">
+  <meta name="twitter:card" content="summary">
+  <title>NovaBridge | Free Small Business Tools & Services</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"NovaBridge","url":"https://cidkagenoucid112-svg.github.io/novabridge/","email":"contact.novabridgeafrica@gmail.com"}</script>
   <style>
     :root{--navy:#101b35;--blue:#4263eb;--cyan:#22c7c9;--ink:#18233b;--muted:#64708a;--paper:#f5f7fc;--white:#fff}
     *{box-sizing:border-box}
@@ -43,7 +51,7 @@
     .tool-intro{margin-top:0;color:var(--muted)}
     .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     label{display:block;font-weight:700;font-size:.92rem;margin-bottom:6px}
-    input,textarea{width:100%;border:1px solid #d8deeb;border-radius:9px;padding:12px;font:inherit;color:var(--ink);background:#fff}
+    input,textarea,select{width:100%;border:1px solid #d8deeb;border-radius:9px;padding:12px;font:inherit;color:var(--ink);background:#fff}
     input[aria-invalid="true"]{border-color:#b42318;box-shadow:0 0 0 2px rgba(180,35,24,.12)}
     input:focus-visible,button:focus-visible,a:focus-visible,[tabindex="-1"]:focus-visible{outline:3px solid #f0a202;outline-offset:3px}
     .field-error{margin:5px 0 0;color:#b42318;font-size:.86rem}
@@ -56,6 +64,16 @@
     .result-item h3{font-size:.95rem;margin:0 0 6px;color:#28417d}
     .result-item p{margin:0;white-space:pre-wrap}
     .small-note{font-size:.86rem;color:var(--muted);margin-top:14px}
+    .process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .process-card,.faq-list details{background:#fff;border:1px solid #e1e6f1;border-radius:14px;padding:20px}
+    .process-card h3,.faq-list summary{color:var(--navy);margin:0 0 8px;font-weight:800}
+    .faq-list{display:grid;gap:10px;max-width:850px;margin:auto}
+    .faq-list summary{cursor:pointer}
+    .inquiry-form{max-width:760px;margin:28px auto 0;text-align:left;background:#fff;color:var(--ink);padding:24px;border-radius:16px}
+    .inquiry-form .fields{margin-top:12px}
+    .inquiry-form .small-note{color:var(--muted)}
+    .inquiry-form [hidden]{display:none!important}
+    @media(max-width:760px){.process-grid{grid-template-columns:1fr}}
     .contact{background:var(--navy);color:white;text-align:center}
     .contact h2{color:white}
     .contact p{color:#dbe5ff}
@@ -107,7 +125,7 @@
     <div class="wrap nav">
       <div class="brand">Nova<span>Bridge</span></div>
       <nav aria-label="Main navigation">
-        <a href="#about">About</a><a href="#tools">What We Do</a><a href="#assistant">Starter Pack</a><a href="#services">Services</a><a href="#toolkit">Business Toolkit</a><a href="#contact">Contact</a>
+        <a href="#about">About</a><a href="#tools">What We Do</a><a href="#assistant">Starter Pack</a><a href="#services">Services</a><a href="#toolkit">Business Toolkit</a><a href="resources.html">Resources</a><a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -119,7 +137,12 @@
           <div class="eyebrow">A simple business starting point</div>
           <h1>Get a clearer start for your business.</h1>
           <p>Use free, browser-based tools to shape your business message, plan promotions, estimate prices, prepare quotes and invoices, and track your week.</p>
-          <a class="button button-primary" href="#toolkit">Explore the free toolkit</a>
+          <div class="actions">
+            <a class="button button-primary" href="#toolkit">Explore the free toolkit</a>
+            <button class="button button-secondary" type="button" data-share-page data-share-status="sharePageStatus">Share NovaBridge</button>
+            <a class="button button-secondary" href="resources.html">Free resources</a>
+          </div>
+          <p class="small-note" id="sharePageStatus" role="status" aria-live="polite"></p>
         </div>
         <aside class="hero-card">
           <strong>Practical tools for small businesses</strong>
@@ -194,6 +217,31 @@
           <article class="card"><div class="icon">📚</div><h3>Bookkeeping &amp; monthly reporting</h3><p class="muted">Organize records, reconcile agreed accounts, and get clear monthly management summaries.</p><a class="button button-secondary" href="bookkeeping.html">Explore bookkeeping</a></article>
           <article class="card"><div class="icon">🧾</div><h3>Business documents &amp; invoicing</h3><p class="muted">Prepare professional business documents, reusable invoice templates, and payment tracking.</p><a class="button button-secondary" href="business-documents.html">Explore documents &amp; invoicing</a></article>
           <article class="card"><div class="icon">💻</div><h3>Accounting software setup</h3><p class="muted">Set up a practical bookkeeping workflow and learn how to manage it.</p><a class="button button-secondary" href="accounting-software.html">Explore software setup</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <div class="wrap">
+        <div class="section-heading">
+          <h2>A clear process, from first message to handover</h2>
+          <p>Know what happens before you commit to a service.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-card"><h3>1. Tell us what you need</h3><p class="muted">Choose a service and describe the outcome you’re looking for. Don’t include sensitive records in the enquiry.</p></article>
+          <article class="process-card"><h3>2. Agree the scope and fee</h3><p class="muted">We’ll confirm what’s included, what information is needed, the expected timing, and the price before work begins.</p></article>
+          <article class="process-card"><h3>3. Review the handover</h3><p class="muted">You receive the agreed documents, setup, or report and can raise questions about the deliverables.</p></article>
+        </div>
+      </div>
+    </section>
+    <section id="faq" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-heading"><h2>Frequently asked questions</h2></div>
+        <div class="faq-list">
+          <details><summary>Can NovaBridge work with businesses in different countries?</summary><p class="muted">We can discuss projects from different locations. We’ll confirm service scope and any local requirements before agreeing to work.</p></details>
+          <details><summary>How do you set prices?</summary><p class="muted">Each service page explains its pricing basis. We provide a quote after we understand the deliverables and complexity.</p></details>
+          <details><summary>Can I send financial or employee records through this site?</summary><p class="muted">No. The enquiry form is only for basic contact and project details. Don’t send bank statements, payroll files, IDs, or other sensitive records through the website or ordinary email. If work proceeds, we’ll agree a suitable way to share required documents.</p></details>
+          <details><summary>Does NovaBridge provide local tax or legal advice everywhere?</summary><p class="muted">No. Requirements differ by location. Work that requires local professional qualifications or registration will be scoped with an appropriately qualified professional where needed.</p></details>
         </div>
       </div>
     </section>
@@ -301,10 +349,25 @@
 
     <section class="contact" id="contact">
       <div class="wrap">
-        <h2>Let's build what's next.</h2>
-        <p>Have a question or feedback about the NovaBridge Small Business Toolkit? We'd be glad to hear from you.</p>
-        <p>Contact us at <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com">contact.novabridgeafrica@gmail.com</a>.</p>
-        <p><a class="button button-primary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com">Email NovaBridge</a></p>
+        <h2>Tell us what you need.</h2>
+        <p>Share a few basic details and we’ll prepare an email enquiry for you to review.</p>
+        <form class="inquiry-form" id="inquiryForm">
+          <div class="fields">
+            <div><label for="inquiryName">Your name</label><input id="inquiryName" name="name" autocomplete="name" required maxlength="100"></div>
+            <div><label for="inquiryEmail">Email address</label><input id="inquiryEmail" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+            <div><label for="inquiryCountry">Country</label><input id="inquiryCountry" name="country" autocomplete="country-name" required maxlength="80" placeholder="Where is your business based?"></div>
+            <div><label for="inquiryService">What can we help with?</label><select id="inquiryService" name="service" required>
+              <option value="" selected disabled>Choose a service</option>
+              <option>Bookkeeping &amp; monthly reporting</option><option>Business documents &amp; invoicing</option><option>Accounting software setup &amp; training</option><option>Free business tools</option><option>Something else</option>
+            </select></div>
+            <div class="full"><label for="inquiryDetails">What outcome are you looking for?</label><textarea id="inquiryDetails" name="details" maxlength="600" required placeholder="A short description is enough. Please don’t include confidential or financial records."></textarea></div>
+          </div>
+          <div class="tool-actions"><button class="button button-primary" type="submit">Prepare email enquiry</button></div>
+          <p class="small-note">This form stays in your browser. Preparing an email creates a Gmail draft link with the details you entered. The details are not sent to NovaBridge unless you review the draft and press Send. Don’t include sensitive records.</p>
+          <p class="small-note" id="inquiryStatus" role="status" aria-live="polite"></p>
+          <a class="button button-secondary" id="openInquiryDraft" href="#" target="_blank" rel="noopener noreferrer" hidden>Open email draft</a>
+        </form>
+        <p>Prefer to email directly? <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=contact.novabridgeafrica%40gmail.com">contact.novabridgeafrica@gmail.com</a>.</p>
       </div>
     </section>
   </main>
@@ -915,6 +978,52 @@
         byId('trackerStatus').textContent = 'CSV downloaded. Store it somewhere safe.';
       });
       renderTracker();
+    })();
+  </script>
+<script>
+    (function() {
+      document.querySelectorAll('[data-share-page]').forEach((button) => {
+        const status = document.getElementById(button.dataset.shareStatus);
+        button.addEventListener('click', async () => {
+          try {
+            const data = { title: document.title, text: 'NovaBridge — free small business tools and practical services.', url: window.location.href };
+            if (navigator.share) {
+              await navigator.share(data);
+              if (status) status.textContent = 'Thanks for sharing NovaBridge.';
+            } else {
+              await navigator.clipboard.writeText(data.url);
+              if (status) status.textContent = 'Page link copied. Share it wherever your community connects.';
+            }
+          } catch (error) {
+            if (status) status.textContent = error.name === 'AbortError' ? '' : 'Copy the page address from your browser to share it.';
+          }
+        });
+      });
+      const form = document.getElementById('inquiryForm');
+      if (!form) return;
+      const paramsFromPage = new URLSearchParams(window.location.search);
+      const serviceFromPage = paramsFromPage.get('service');
+      if (serviceFromPage) {
+        const serviceSelect = document.getElementById('inquiryService');
+        const match = Array.from(serviceSelect.options).find((option) => option.textContent.toLowerCase().includes(serviceFromPage.toLowerCase()));
+        if (match) serviceSelect.value = match.value;
+      }
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        const name = document.getElementById('inquiryName').value.trim();
+        const email = document.getElementById('inquiryEmail').value.trim();
+        const country = document.getElementById('inquiryCountry').value.trim();
+        const service = document.getElementById('inquiryService').value;
+        const details = document.getElementById('inquiryDetails').value.trim();
+        const subject = 'NovaBridge enquiry — ' + service;
+        const body = 'Name: ' + name + '\nEmail: ' + email + '\nCountry: ' + country + '\nService: ' + service + '\n\nWhat I need:\n' + details;
+        const params = new URLSearchParams({ view: 'cm', fs: '1', to: 'contact.novabridgeafrica@gmail.com', su: subject, body: body });
+        document.getElementById('openInquiryDraft').href = 'https://mail.google.com/mail/?' + params.toString();
+        document.getElementById('openInquiryDraft').hidden = false;
+        document.getElementById('inquiryStatus').textContent = 'Your email draft is ready. Open it to review the details and send your enquiry.';
+        document.getElementById('openInquiryDraft').focus();
+      });
     })();
   </script>
 </body>
