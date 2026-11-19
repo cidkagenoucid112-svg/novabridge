@@ -41,6 +41,26 @@
     .price{background:#edf2ff;border-radius:14px;padding:20px}
     footer{background:#0a1225;color:#aebbd8;text-align:center;padding:20px;font-size:.9rem}
     @media(max-width:700px){.nav{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.hero{padding:48px 0}}
+
+    .service-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(250px,.85fr);align-items:center;gap:34px}
+    .service-hero-copy{min-width:0}
+    .service-visual{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:16px;box-shadow:0 16px 38px rgba(4,16,43,.12)}
+    .service-visual-label{display:block;padding:2px 4px 8px;color:#b8f2e9;text-transform:uppercase;letter-spacing:1.5px;font-size:.68rem;font-weight:800}
+    .service-visual svg{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 12px rgba(16,27,53,.1))}
+    .service-flow{display:flex;justify-content:space-between;gap:7px;margin:10px 0 0;padding:0;list-style:none;color:#e6edff;font-size:.76rem;font-weight:700}
+    .service-flow li+li:before{content:"→";color:#92e5dc;margin-right:7px}
+    .deliverables-section{padding-top:20px}
+    .deliverables-panel{background:#fff;border:1px solid #e2e9f5;border-radius:18px;padding:22px 24px;box-shadow:0 10px 28px rgba(24,42,80,.05)}
+    .deliverables-heading{display:flex;align-items:baseline;justify-content:space-between;gap:15px;margin-bottom:16px}
+    .deliverables-heading h2{margin:3px 0 0;font-size:1.35rem}
+    .deliverables-kicker{color:#178b82;letter-spacing:1.3px;font-size:.68rem;font-weight:800}
+    .deliverables-note{color:var(--muted);font-size:.82rem}
+    .deliverable-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .deliverable-item{display:flex;align-items:flex-start;gap:10px;padding:14px;background:#f7f9fc;border-radius:12px}
+    .deliverable-check{flex:none;display:grid;width:23px;height:23px;place-items:center;border-radius:50%;background:#dff5f0;color:#137f77;font-weight:800;font-size:.8rem}
+    .deliverable-item strong{display:block;color:var(--navy);font-size:.91rem;margin:0 0 3px}
+    .deliverable-item span:last-child{display:block;color:var(--muted);font-size:.82rem;line-height:1.45}
+    @media(max-width:700px){.service-hero-grid{grid-template-columns:1fr;gap:20px}.service-visual{max-width:420px}.deliverables-heading{align-items:flex-start;flex-direction:column}.deliverable-grid{grid-template-columns:1fr}.deliverables-panel{padding:18px}}
   </style>
 </head>
 <body>
@@ -49,12 +69,13 @@
     <nav aria-label="Main navigation"><a href="index.html#services">Services</a><a href="resources.html">Resources</a><a href="index.html#toolkit">Free business tools</a><a href="index.html#contact">Contact</a></nav>
   </div></header>
   <main>
-    <section class="hero"><div class="wrap">
+    <section class="hero"><div class="wrap service-hero-grid"><div class="service-hero-copy">
       <div class="eyebrow">Business support for growing businesses</div>
       <h1>Business Documents & Invoicing</h1>
       <p>Get clear, consistent business documents and a simple process for sending invoices and following up on payments.</p>
-      <div class="hero-actions"><a class="button button-primary" href="index.html?service=business%20documents#contact">Request a quote</a><button class="button button-primary" type="button" data-share-page data-share-status="shareStatus">Share this page</button></div><p class="muted" id="shareStatus" role="status" aria-live="polite"></p>    </div></section>
+      <div class="hero-actions"><a class="button button-primary" href="index.html?service=business%20documents#contact">Request a quote</a><button class="button button-primary" type="button" data-share-page data-share-status="shareStatus">Share this page</button></div><p class="muted" id="shareStatus" role="status" aria-live="polite"></p>    </div><aside class="service-visual" aria-label="A document and invoice prepared for review and follow-up."><span class="service-visual-label">A clearer way to work</span><svg viewBox="0 0 300 190" role="img" aria-labelledby="serviceArtTitle serviceArtDesc"><title id="serviceArtTitle">Create clear business documents</title><desc id="serviceArtDesc">A reusable document template and invoice are ready to review and send.</desc><rect x="12" y="12" width="276" height="166" rx="24" fill="#f0f8ff"/><circle cx="248" cy="48" r="20" fill="#d9f5ef"/><rect x="42" y="39" width="112" height="122" rx="12" fill="#fff" stroke="#dce5f3" stroke-width="2"/><rect x="57" y="56" width="30" height="30" rx="8" fill="#e9f8f5"/><path d="m65 71 7 7 13-15" fill="none" stroke="#178b82" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M97 64h39M57 101h81M57 116h70M57 131h58" stroke="#9aabc8" stroke-width="4" stroke-linecap="round"/><path d="M157 100h22" stroke="#5e83e8" stroke-width="3" stroke-linecap="round"/><path d="m172 93 8 7-8 7" fill="none" stroke="#5e83e8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="185" y="52" width="78" height="106" rx="12" fill="#fff" stroke="#dce5f3" stroke-width="2"/><rect x="199" y="67" width="50" height="16" rx="5" fill="#e8efff"/><path d="M199 96h50M199 108h34M199 121h50" stroke="#9aabc8" stroke-width="4" stroke-linecap="round"/><rect x="199" y="135" width="50" height="10" rx="5" fill="#c9f2ea"/></svg><ol class="service-flow" aria-label="Service steps"><li>Draft</li><li>Review</li><li>Send</li></ol></aside></div></section>
     <section><div class="wrap"><p class="muted">Service availability and requirements vary by country. We’ll confirm local accounting, payroll, tax, and company-registration requirements for your location. Work that requires a local professional or registration will be handled with an appropriately qualified partner where needed.</p></div></section>
+    <section class="deliverables-section" aria-labelledby="deliverablesTitle"><div class="wrap"><div class="deliverables-panel"><div class="deliverables-heading"><div><span class="deliverables-kicker">YOUR HANDOVER</span><h2 id="deliverablesTitle">What you can expect</h2></div><span class="deliverables-note">Agreed with you before work begins</span></div><div class="deliverable-grid"><div class="deliverable-item"><span class="deliverable-check" aria-hidden="true">✓</span><div><strong>Editable documents</strong><span>Professional files in the agreed format.</span></div></div><div class="deliverable-item"><span class="deliverable-check" aria-hidden="true">✓</span><div><strong>Reusable templates</strong><span>Quotes, invoices, and receipts made consistent.</span></div></div><div class="deliverable-item"><span class="deliverable-check" aria-hidden="true">✓</span><div><strong>Payment tracker</strong><span>A simple view of invoices and follow-ups.</span></div></div></div></div></div></section>
     <section><div class="wrap grid">
       <article class="card"><h2>What’s included</h2><ul><li>Company profiles, letters of introduction, and business-plan formatting or drafting support</li><li>Customized quotation, invoice, and receipt templates</li><li>Invoice register and payment follow-up tracking</li><li>Standard document templates; legal contracts only from lawyer-approved forms</li></ul></article>
       <article class="card"><h2>Who it’s for</h2><p>New and growing businesses that need professional documents, reusable templates, or a more organized invoicing routine.</p><h3>What you receive</h3><ul><li>The agreed editable document or template files</li><li>A simple invoice and payment tracking sheet, when requested</li><li>One agreed revision round, with additional changes scoped separately</li></ul></article>
