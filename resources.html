@@ -26,17 +26,37 @@
     input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid #f0a202;outline-offset:3px}
     footer{background:#0a1225;color:#aebbd8;text-align:center;padding:20px;font-size:.9rem}
     @media(max-width:760px){.nav{align-items:flex-start;flex-direction:column}.cards{grid-template-columns:1fr}}
+
+    .resource-page-intro{max-width:650px;margin:0 auto 24px;text-align:center}
+    .resource-page-intro h2{margin:0 0 7px}
+    .resource-page-intro p{margin:0;color:var(--muted)}
+    .resource-card{position:relative;isolation:isolate;overflow:hidden;min-height:300px}.resource-card>*{position:relative;z-index:1}
+    .resource-card:after{content:"";position:absolute;z-index:0;right:-30px;top:-34px;width:100px;height:100px;border:1px solid #dcebe9;border-radius:50%;box-shadow:0 0 0 13px rgba(34,199,201,.045);pointer-events:none}
+    .resource-icon{display:grid;width:58px;height:58px;place-items:center;margin-bottom:15px;border-radius:18px;background:#eaf8f6;color:#157f7b}
+    .resource-icon svg{width:31px;height:31px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .resource-label{display:block;margin-bottom:7px;color:#178b82;font-size:.68rem;letter-spacing:1.2px;font-weight:800}
+    .resource-card h2{font-size:1.25rem}
+    .resource-deliverable{margin-top:18px;padding-top:13px;border-top:1px solid #e8edf4;color:#596681;font-size:.86rem}
+    .resource-deliverable strong{color:var(--navy)}
+    .resource-rhythm{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin:25px auto 0;color:#475675;font-size:.86rem;font-weight:700}
+    .resource-rhythm span{display:inline-flex;align-items:center;gap:7px}
+    .resource-rhythm span+span:before{content:"→";margin-right:4px;color:#178b82}
+    .resource-rhythm i{display:grid;width:24px;height:24px;place-items:center;border-radius:50%;background:#e5f7f4;color:#157f7b;font-style:normal;font-size:.72rem}
   </style>
 </head>
 <body>
 <header><div class="wrap nav"><a class="brand" href="index.html">Nova<span>Bridge</span></a><nav aria-label="Main navigation"><a href="index.html#services">Services</a><a href="index.html#toolkit">Free tools</a><a href="index.html#contact">Contact</a></nav></div></header>
 <main>
   <section class="hero"><div class="wrap"><div class="eyebrow">Free and ready to use</div><h1>Business resources</h1><p>Simple checklists and message templates you can adapt to your business. Start with a free tool or ask us for practical support.</p><div class="actions"><a class="button" href="index.html#toolkit">Explore free tools</a><button class="button" type="button" data-share-page data-share-status="shareStatus">Share this library</button></div><p id="shareStatus" role="status" aria-live="polite"></p></div></section>
-  <section><div class="wrap"><div class="cards">
-    <article class="card"><h2>Monthly records checklist</h2><p class="muted">A reusable checklist of records to gather and review at the end of each month.</p><p><a class="button" href="monthly-records-checklist.csv" download>Download checklist (CSV)</a></p></article>
-    <article class="card"><h2>Invoice follow-up messages</h2><p class="muted">Three courteous message drafts for upcoming, due, and overdue invoices.</p><p><a class="button" href="invoice-follow-up-templates.txt" download>Download message templates</a></p></article>
-    <article class="card"><h2>Weekly business review sheet</h2><p class="muted">A lightweight worksheet for reflecting on the week and choosing a next priority.</p><p><a class="button" href="weekly-business-review.csv" download>Download worksheet (CSV)</a></p></article>
-  </div></div></section>
+  <section><div class="wrap">
+  <div class="resource-page-intro"><h2>Small resources, ready to put to work</h2><p>Download one, tailor it to your business, and use it when it fits.</p></div>
+  <div class="cards">
+    <article class="card resource-card"><div class="resource-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><rect x="13" y="9" width="24" height="31" rx="4"/><path d="m18 19 3 3 5-6M29 20h4m-15 8 3 3 5-6m3 1h4m-15 8h15"/></svg></div><span class="resource-label">CHECKLIST</span><h2>Monthly records checklist</h2><p class="muted">A reusable checklist of records to gather and review at the end of each month.</p><p class="resource-deliverable"><strong>You get:</strong> a downloadable CSV checklist.</p><p><a class="button" href="monthly-records-checklist.csv" download>Download checklist</a></p></article>
+    <article class="card resource-card"><div class="resource-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M10 12h28v21H22l-8 6v-6h-4z"/><path d="M16 20h16m-16 6h11"/><path d="m31 35 3 3 6-7"/></svg></div><span class="resource-label">MESSAGE TEMPLATES</span><h2>Invoice follow-up messages</h2><p class="muted">Three courteous message drafts for upcoming, due, and overdue invoices.</p><p class="resource-deliverable"><strong>You get:</strong> ready-to-edit text message drafts.</p><p><a class="button" href="invoice-follow-up-templates.txt" download>Download messages</a></p></article>
+    <article class="card resource-card"><div class="resource-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M11 38V13a3 3 0 0 1 3-3h22a3 3 0 0 1 3 3v25z"/><path d="M17 19h16m-16 6h16m-16 6h9"/><path d="m29 33 3 3 6-7"/></svg></div><span class="resource-label">WEEKLY REVIEW</span><h2>Weekly business review sheet</h2><p class="muted">A lightweight worksheet for reflecting on the week and choosing a next priority.</p><p class="resource-deliverable"><strong>You get:</strong> a downloadable CSV worksheet.</p><p><a class="button" href="weekly-business-review.csv" download>Download worksheet</a></p></article>
+  </div>
+  <ol class="resource-rhythm" aria-label="A simple way to use a resource"><li><i aria-hidden="true">1</i> Download</li><li><i aria-hidden="true">2</i> Adapt</li><li><i aria-hidden="true">3</i> Put it to work</li></ol>
+  </div></section>
   <section><div class="wrap notice"><h2>Use these as starting points</h2><p>Adapt the resources to your business and local requirements. They are general organizational aids, not accounting, tax, or legal advice.</p></div></section>
 </main>
 <footer><div class="wrap">NovaBridge · <a href="index.html#contact">Contact us</a></div></footer>
