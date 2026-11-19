@@ -41,6 +41,26 @@
     .price{background:#edf2ff;border-radius:14px;padding:20px}
     footer{background:#0a1225;color:#aebbd8;text-align:center;padding:20px;font-size:.9rem}
     @media(max-width:700px){.nav{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.hero{padding:48px 0}}
+
+    .service-hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(250px,.85fr);align-items:center;gap:34px}
+    .service-hero-copy{min-width:0}
+    .service-visual{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:16px;box-shadow:0 16px 38px rgba(4,16,43,.12)}
+    .service-visual-label{display:block;padding:2px 4px 8px;color:#b8f2e9;text-transform:uppercase;letter-spacing:1.5px;font-size:.68rem;font-weight:800}
+    .service-visual svg{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 12px rgba(16,27,53,.1))}
+    .service-flow{display:flex;justify-content:space-between;gap:7px;margin:10px 0 0;padding:0;list-style:none;color:#e6edff;font-size:.76rem;font-weight:700}
+    .service-flow li+li:before{content:"→";color:#92e5dc;margin-right:7px}
+    .deliverables-section{padding-top:20px}
+    .deliverables-panel{background:#fff;border:1px solid #e2e9f5;border-radius:18px;padding:22px 24px;box-shadow:0 10px 28px rgba(24,42,80,.05)}
+    .deliverables-heading{display:flex;align-items:baseline;justify-content:space-between;gap:15px;margin-bottom:16px}
+    .deliverables-heading h2{margin:3px 0 0;font-size:1.35rem}
+    .deliverables-kicker{color:#178b82;letter-spacing:1.3px;font-size:.68rem;font-weight:800}
+    .deliverables-note{color:var(--muted);font-size:.82rem}
+    .deliverable-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .deliverable-item{display:flex;align-items:flex-start;gap:10px;padding:14px;background:#f7f9fc;border-radius:12px}
+    .deliverable-check{flex:none;display:grid;width:23px;height:23px;place-items:center;border-radius:50%;background:#dff5f0;color:#137f77;font-weight:800;font-size:.8rem}
+    .deliverable-item strong{display:block;color:var(--navy);font-size:.91rem;margin:0 0 3px}
+    .deliverable-item span:last-child{display:block;color:var(--muted);font-size:.82rem;line-height:1.45}
+    @media(max-width:700px){.service-hero-grid{grid-template-columns:1fr;gap:20px}.service-visual{max-width:420px}.deliverables-heading{align-items:flex-start;flex-direction:column}.deliverable-grid{grid-template-columns:1fr}.deliverables-panel{padding:18px}}
   </style>
 </head>
 <body>
@@ -49,12 +69,13 @@
     <nav aria-label="Main navigation"><a href="index.html#services">Services</a><a href="resources.html">Resources</a><a href="index.html#toolkit">Free business tools</a><a href="index.html#contact">Contact</a></nav>
   </div></header>
   <main>
-    <section class="hero"><div class="wrap">
+    <section class="hero"><div class="wrap service-hero-grid"><div class="service-hero-copy">
       <div class="eyebrow">Business support for growing businesses</div>
       <h1>Accounting Software Setup & Training</h1>
       <p>Set up a practical bookkeeping workflow in the accounting software that fits your business, then learn how to use it day to day.</p>
-      <div class="hero-actions"><a class="button button-primary" href="index.html?service=accounting%20software#contact">Request a quote</a><button class="button button-primary" type="button" data-share-page data-share-status="shareStatus">Share this page</button></div><p class="muted" id="shareStatus" role="status" aria-live="polite"></p>    </div></section>
+      <div class="hero-actions"><a class="button button-primary" href="index.html?service=accounting%20software#contact">Request a quote</a><button class="button button-primary" type="button" data-share-page data-share-status="shareStatus">Share this page</button></div><p class="muted" id="shareStatus" role="status" aria-live="polite"></p>    </div><aside class="service-visual" aria-label="A simple accounting workflow on a laptop, with setup and training steps."><span class="service-visual-label">A clearer way to work</span><svg viewBox="0 0 300 190" role="img" aria-labelledby="serviceArtTitle serviceArtDesc"><title id="serviceArtTitle">A practical accounting workflow</title><desc id="serviceArtDesc">A simple software dashboard, with chart and checklist, ready for the owner to use.</desc><rect x="12" y="12" width="276" height="166" rx="24" fill="#f0f8ff"/><circle cx="243" cy="47" r="20" fill="#d9f5ef"/><rect x="36" y="39" width="185" height="108" rx="13" fill="#fff" stroke="#dce5f3" stroke-width="2"/><path d="M52 58h74M52 68h47" stroke="#9aabc8" stroke-width="4" stroke-linecap="round"/><rect x="52" y="83" width="72" height="48" rx="8" fill="#f2f6ff"/><path d="M63 120v-12h10v12M80 120V98h10v22M97 120v-16h10v16" fill="none" stroke="#4263eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="137" y="83" width="67" height="48" rx="8" fill="#effaf7"/><path d="m149 99 5 5 8-9M170 99h22M149 116l5 5 8-9M170 116h22" fill="none" stroke="#178b82" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 150h207l-18 17H44z" fill="#bfcce7"/><rect x="239" y="90" width="30" height="58" rx="8" fill="#fff" stroke="#dce5f3" stroke-width="2"/><circle cx="254" cy="137" r="3" fill="#9aabc8"/><path d="M246 100h16M246 109h16M246 118h11" stroke="#18a89f" stroke-width="3" stroke-linecap="round"/></svg><ol class="service-flow" aria-label="Service steps"><li>Set up</li><li>Learn</li><li>Maintain</li></ol></aside></div></section>
     <section><div class="wrap"><p class="muted">Service availability and requirements vary by country. We’ll confirm local accounting, payroll, tax, and company-registration requirements for your location. Work that requires a local professional or registration will be handled with an appropriately qualified partner where needed.</p></div></section>
+    <section class="deliverables-section" aria-labelledby="deliverablesTitle"><div class="wrap"><div class="deliverables-panel"><div class="deliverables-heading"><div><span class="deliverables-kicker">YOUR HANDOVER</span><h2 id="deliverablesTitle">What you can expect</h2></div><span class="deliverables-note">Agreed with you before work begins</span></div><div class="deliverable-grid"><div class="deliverable-item"><span class="deliverable-check" aria-hidden="true">✓</span><div><strong>Configured workflow</strong><span>An account and process based on agreed needs.</span></div></div><div class="deliverable-item"><span class="deliverable-check" aria-hidden="true">✓</span><div><strong>Training session</strong><span>Practical steps for owners or staff.</span></div></div><div class="deliverable-item"><span class="deliverable-check" aria-hidden="true">✓</span><div><strong>Handover checklist</strong><span>A clear list of setup details and next actions.</span></div></div></div></div></div></section>
     <section><div class="wrap grid">
       <article class="card"><h2>What’s included</h2><ul><li>Initial setup of a chart of accounts and business details</li><li>Import or entry of opening balances and agreed records</li><li>Setup of customers, suppliers, products, and recurring entries where relevant</li><li>Practical training for the owner or staff on everyday tasks</li></ul></article>
       <article class="card"><h2>Who it’s for</h2><p>Owners and small teams moving from paper or spreadsheets to accounting software, or looking to make better use of a system they already have.</p><h3>What you receive</h3><ul><li>An agreed configured account and bookkeeping workflow</li><li>A handover checklist and training session</li><li>A list of unresolved data or setup questions for the business to address</li></ul></article>
